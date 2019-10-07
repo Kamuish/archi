@@ -1,3 +1,7 @@
 .idea
 
 archi_venv/
+
+*.pyc
+*.json
+setup.py
