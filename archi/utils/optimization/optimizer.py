@@ -2,6 +2,7 @@ import numpy as np
 from multiprocessing import Process, Queue
 
 from ARCHI.utils import create_logger
+
 logger = create_logger("utils")
 
 
@@ -22,16 +23,16 @@ def run_function(queue, func, factors, data_f, to_disable=[], **kwargs):
 
     kwargs_optim = kwargs.copy()
 
-    kwargs_optim['debug'] = 0
-    kwargs_optim['show_results'] = 0
-    kwargs_optim['plot_realtime'] = 0
+    kwargs_optim["debug"] = 0
+    kwargs_optim["show_results"] = 0
+    kwargs_optim["plot_realtime"] = 0
 
-    kwargs_optim['report_pictures'] = 0
-    kwargs_optim['show_results'] = 0
-    kwargs_optim['export_text'] = 0
-    kwargs_optim['export_fit'] = 0
-    kwargs_optim['low_memory'] = 1
-    kwargs_optim['uncertainties'] = 0
+    kwargs_optim["report_pictures"] = 0
+    kwargs_optim["show_results"] = 0
+    kwargs_optim["export_text"] = 0
+    kwargs_optim["export_fit"] = 0
+    kwargs_optim["low_memory"] = 1
+    kwargs_optim["uncertainties"] = 0
 
     results_dict = {}
     data_f.load_parameters(factors[0], **kwargs_optim)
@@ -51,7 +52,7 @@ def run_function(queue, func, factors, data_f, to_disable=[], **kwargs):
             star_results[ind] = star.calculate_cdpp(data_fits.mjd_time)[0]
 
             if star.out_bound:
-                star_results[ind] = float('nan')
+                star_results[ind] = float("nan")
 
         results_dict[fac] = star_results
 
@@ -89,9 +90,15 @@ def optimizer(value_range, max_process, func, data_f, file_path, to_disable=[], 
     """
 
     comms_queue = Queue()
-    process_to_spawn = max_process if value_range.shape[0] >= max_process else value_range.shape[0]
+    process_to_spawn = (
+        max_process if value_range.shape[0] >= max_process else value_range.shape[0]
+    )
 
-    logger.info("Optimizer going to spawn {} processes, for values: {}".format(process_to_spawn, value_range))
+    logger.info(
+        "Optimizer going to spawn {} processes, for values: {}".format(
+            process_to_spawn, value_range
+        )
+    )
     # Divide into equal lists the factors to be used
 
     splitted_values = np.array_split(value_range, process_to_spawn)
@@ -101,8 +108,11 @@ def optimizer(value_range, max_process, func, data_f, file_path, to_disable=[], 
     logger.debug(splitted_values)
 
     for k in range(process_to_spawn):
-        p = Process(target=run_function, args=(comms_queue, func, splitted_values[k], data_f, to_disable),
-                    kwargs=kwargs)
+        p = Process(
+            target=run_function,
+            args=(comms_queue, func, splitted_values[k], data_f, to_disable),
+            kwargs=kwargs,
+        )
         p.start()
 
     factors = []
@@ -111,7 +121,9 @@ def optimizer(value_range, max_process, func, data_f, file_path, to_disable=[], 
     for ii in range(process_to_spawn):
 
         data = comms_queue.get()
-        if ii == 0:   # For the first run, create list with list for each star, in which the noise values will be stored
+        if (
+            ii == 0
+        ):  # For the first run, create list with list for each star, in which the noise values will be stored
             cvs = [[] for _ in range(len(data[list(data.keys())[0]]))]
 
         for factor, stars_dict in data.items():
@@ -138,7 +150,7 @@ def optimizer(value_range, max_process, func, data_f, file_path, to_disable=[], 
 
         optimized_dict[str(index)] = int(optimal_factor[0])
 
-    with open(file_path, mode='a') as file:
+    with open(file_path, mode="a") as file:
 
         for index, fac in enumerate(factors):
             cdpps = ""

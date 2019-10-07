@@ -6,6 +6,7 @@ from .optimizer import optimizer
 from .circular_fine_tune import circular_tuner
 
 from ARCHI.utils import create_logger
+
 logger = create_logger("utils")
 
 
@@ -35,8 +36,8 @@ def general_optimizer(func, data_f, job_number, max_process, **kwargs):
     """
     logger.info("Optimization with grid of: {}".format(kwargs["grid_bg"]))
 
-    low, high = kwargs['val_range']
-    step = kwargs['step']
+    low, high = kwargs["val_range"]
+    step = kwargs["step"]
     logging.disable(logging.INFO)
 
     value_range = np.arange(low, high + step, step)
@@ -46,14 +47,16 @@ def general_optimizer(func, data_f, job_number, max_process, **kwargs):
 
     file_path = os.path.join(path, "optimization_info.txt")
 
-    with open(file_path, mode='w') as file:
-        file.write("Method - {}\n".format(kwargs['method']))
-        file.write("Detect mode - {}\n".format(kwargs['detect_mode']))
-        file.write("Initial detection mode - {}\n".format(kwargs['initial_detect']))
-        file.write("Background grid - {}\n".format(kwargs['grid_bg']))
+    with open(file_path, mode="w") as file:
+        file.write("Method - {}\n".format(kwargs["method"]))
+        file.write("Detect mode - {}\n".format(kwargs["detect_mode"]))
+        file.write("Initial detection mode - {}\n".format(kwargs["initial_detect"]))
+        file.write("Background grid - {}\n".format(kwargs["grid_bg"]))
         file.write("Factors Stars: -> \n")
 
-    min_cvs, optimized_dict = optimizer(value_range, max_process, func, data_f, file_path, **kwargs)
+    min_cvs, optimized_dict = optimizer(
+        value_range, max_process, func, data_f, file_path, **kwargs
+    )
 
     increase = high - low
     iterations = 0
@@ -63,46 +66,64 @@ def general_optimizer(func, data_f, job_number, max_process, **kwargs):
         to_disable = []
 
         for key, val in optimized_dict.items():
-            if val < high - 2*step:   # allow for some tolerance near the border
+            if val < high - 2 * step:  # allow for some tolerance near the border
                 to_disable.append(int(key))
 
-        print("DISABLING: {} - Last run in the interval: {} <-> {}".format(to_disable, low, high))
+        print(
+            "DISABLING: {} - Last run in the interval: {} <-> {}".format(
+                to_disable, low, high
+            )
+        )
         if len(to_disable) == len(optimized_dict):
             logger.fatal("All stars were disabled")
             break
 
-        low, high = high - 2*step, high+increase - 2*step
+        low, high = high - 2 * step, high + increase - 2 * step
         value_range = np.arange(low, high + step, step)
-        min_cvs_tmp, optimized_dict_tmp = optimizer(value_range, max_process,
-                                                    func, data_f, file_path, to_disable, **kwargs)
+        min_cvs_tmp, optimized_dict_tmp = optimizer(
+            value_range, max_process, func, data_f, file_path, to_disable, **kwargs
+        )
 
-        for star, cdpp in min_cvs_tmp.items():   # update old values if the new ones are better
+        for (
+            star,
+            cdpp,
+        ) in min_cvs_tmp.items():  # update old values if the new ones are better
             if cdpp < min_cvs[star]:
                 min_cvs[star] = cdpp
                 optimized_dict[str(star)] = optimized_dict_tmp[str(star)]
 
         iterations += 1
-        if iterations > kwargs['optimization_extensions']:
+        if iterations > kwargs["optimization_extensions"]:
             logger.fatal("Reached max iters. Last values: {} {}".format(low, high))
             break
 
-    if kwargs['fine_tune_circle'] and 'circle' in kwargs['method']:
-        vals = kwargs['method'].split('+')
+    if kwargs["fine_tune_circle"] and "circle" in kwargs["method"]:
+        vals = kwargs["method"].split("+")
 
         to_disable = []
 
-        if len(vals) == 1 and vals[0] == 'circle':
+        if len(vals) == 1 and vals[0] == "circle":
             to_disable = []
 
-        elif vals[0] == 'circle':
+        elif vals[0] == "circle":
             to_disable = [i for i in data_f.stars[1:].number]
-        elif len(vals) != 1 and vals[1] == 'circle':
+        elif len(vals) != 1 and vals[1] == "circle":
             to_disable = [0]
 
-        min_cvs_tmp, optimized_dict_tmp = circular_tuner(optimized_dict.values(), max_process,
-                                                    func, data_f, file_path, to_disable, **kwargs)
+        min_cvs_tmp, optimized_dict_tmp = circular_tuner(
+            optimized_dict.values(),
+            max_process,
+            func,
+            data_f,
+            file_path,
+            to_disable,
+            **kwargs
+        )
 
-        for star, cdpp in min_cvs_tmp.items():  # update old values if the new ones are better
+        for (
+            star,
+            cdpp,
+        ) in min_cvs_tmp.items():  # update old values if the new ones are better
             if cdpp < min_cvs[star]:
                 min_cvs[star] = cdpp
                 optimized_dict[str(star)] = optimized_dict_tmp[str(star)]
@@ -110,7 +131,13 @@ def general_optimizer(func, data_f, job_number, max_process, **kwargs):
     logging.disable(logging.NOTSET)
 
     logger.info("Max factor used: {}".format(high))
-    [logger.info("Star {} -  Factor: {} - Noise: {} ppm".
-                 format(index, optimized_dict[index], min_cvs[int(index)])) for index in optimized_dict]
+    [
+        logger.info(
+            "Star {} -  Factor: {} - Noise: {} ppm".format(
+                index, optimized_dict[index], min_cvs[int(index)]
+            )
+        )
+        for index in optimized_dict
+    ]
 
     return optimized_dict
