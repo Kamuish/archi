@@ -51,7 +51,7 @@ def run_function(queue, func, factors, data_f, to_disable=[], **kwargs):
 
             data_f.load_parameters(vals_dict, **kwargs_optim)
 
-        data_fits = func(data_f, factor=vals_dict, **kwargs_optim)
+        data_fits = func(DataFits=data_f, factor=vals_dict, **kwargs_optim)
 
         for ind, star in enumerate(data_fits.stars):
 
