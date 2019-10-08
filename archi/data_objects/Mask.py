@@ -1,5 +1,5 @@
 import numpy as np
-from ARCHI.utils import create_logger
+from archi.utils import create_logger
 
 logger = create_logger("masks")
 
