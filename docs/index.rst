@@ -12,7 +12,7 @@ Welcome to archi's documentation!
 
         Installation <user_guides/installation>
         Configuration <user_guides/configs>
-        The Photo_Controller object <user_guides/Controller>
+        The User interface <user_guides/user_interface>
 
 
 .. toctree::
