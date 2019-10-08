@@ -1,0 +1,106 @@
+##########################################
+#                                        #
+#               Paths                    #
+#                                        #
+##########################################
+
+# GENERAL PATHS
+
+# folder in which the fits files are stored
+base_folder: ""
+
+# path to save and search for the optimized radius file
+optimized_factors: ""
+
+# folder to store the graphs and related information
+results_folder: ""
+
+#name of the curve to be used as the comparison basis. Options pass by: DEFAULT; OPTIMAL; RINF; RSUP
+official_curve: "OPTIMAL"
+
+
+##########################################
+#                                        #
+#      General configurations            #
+#                                        #
+##########################################
+
+# method used on the mask creation. shape/circle
+method: "shape"
+
+#How the initial centers are determined. possible values:  fits/dynam
+initial_detect: "fits"
+
+# uses opencv to calculate the center of each star for each frame dynam/offsets/static
+detect_mode: "dynam"
+
+uncertainties: 0
+
+# size of the background grid. Has to be multiple of 200
+grid_bg: 0
+
+##########################################
+#                                        #
+#          Optimization confs            #
+#                                        #
+##########################################
+
+# enable optimization of the increase factors
+optimize: 0
+
+# number of times that the optimization process is expanded
+optimization_extensions: 6
+
+# Number of cores to use for the optimization process. if it's running on a laptop, it's recommended to use 2 or 3
+optim_processes: 3
+
+# fine search for the mask best size. The step keyword has no effect over this process
+fine_tune_circle: 1
+
+# values that the factor can take -> used in the optimization process
+val_range: [1,10]
+
+step: 1
+
+
+##########################################
+#                                        #
+#          Run time processes            #
+#                                        #
+##########################################
+
+# 0 if the code is being run on computer with GUI
+headless: 0
+
+low_memory: 0
+
+# K2 or DRP
+CDPP_type: "K2"
+
+# compares the method against the official pipeline
+debug: 1
+# Show photometric curve for each star
+show_results: 1
+
+# shows the images and masks in real time
+plot_realtime: 0
+
+
+##########################################
+#                                        #
+#      Data storage/ file handling       #
+#                                        #
+##########################################
+
+# create various pictures to the reports
+report_pictures: 0
+
+# export the photometric data to a txt as well as the one from the official pipeline
+export_text: 1
+
+# export the photometric data to a fit file, as well as relevant information
+export_fit: 0
+
+# export images and information to a pdf file
+export_pdf: 0
+
