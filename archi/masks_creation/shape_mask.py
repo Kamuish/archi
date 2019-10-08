@@ -50,8 +50,8 @@ def create_shape_mask(im, stars, increase_factor, scaling_factor, primary, secon
     im *= 255
     im = np.uint8(im)
 
-    ret, thresh = cv2.threshold(im, 10, 255, 0)
-    contours, h = cv2.findContours(thresh, 1, 2)
+    _, thresh = cv2.threshold(im, 10, 255, 0)
+    contours, _ = cv2.findContours(thresh, 1, 2)
 
     to_remove = []
     for j in range(len(contours)):  # removes small contours (under 5 points)
