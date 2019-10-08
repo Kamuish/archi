@@ -5,4 +5,5 @@ archi_venv/
 *.pyc
 *.json
 *.log
+*.yaml
 setup.py
