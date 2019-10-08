@@ -25,6 +25,8 @@ class Photo_controller:
             kwargs = config_path
 
         self.kwargs = kwargs
+        self.data_fits = Data() 
+
         if no_optim:
             self.kwargs["optimize"] = 0
 
@@ -72,14 +74,12 @@ class Photo_controller:
         return on_call
 
     @_check_parameters
-    def run(self, data_fits, factor=None, **kwargs):
+    def run(self, DataFits = None, factor=None, **kwargs):
         """
         Calls the main method to run the star analysis pipeline
 
         Parameters
         ----------
-        data_fits:
-            :class:`archi.main.initial_loads.Data`  object with all the stars information inside
         factor
             Used for the optimization process. During normal functioning process then so value should be passed
         kwargs
@@ -92,12 +92,15 @@ class Photo_controller:
         configs = (
             self.kwargs if (factor is None and not self.kwargs["optimize"]) else kwargs
         )
+
+        data_fits = DataFits if DataFits is not None else self.data_fits
         result = data_fits.load_parameters(factor, **configs)
 
         if result == -1:
             logger.fatal("Critical error")
             return data_fits
-        self.data_fits = photometry(data_fits, **configs)
+
+        self.data_fits = photometry(data_fits = data_fits, **configs)
 
         if not self.kwargs["optimize"]:
             logger.warning("Checking for out of bounds masks:")
@@ -105,7 +108,7 @@ class Photo_controller:
                 if star.out_bound:
                     logger.warning("\t \t Star {} is out of bounds".format(star.number))
 
-        if self.data_fits.abort_process:
+        if data_fits.abort_process:
             logger.fatal("Problems were found. Could not run properly !!!!!")
             raise Exception("Something went wrong")
 
