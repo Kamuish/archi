@@ -32,8 +32,9 @@ def offsets_method(Data_fits, index, primary, secondary):
     This function expands the functionality of rotate_points. After rotating the points we calculate the offset
     experienced by the central star, by calculating the deviation between the center location from the last two images.
     The offset center for the central star is simply obtained from the fits files, without rotating the previous point.
+    
     Parameters
-    ----------
+    ---------------
     Data_fits
          :class:`ARCHI.main.initial_loads.Data` object.
     index
