@@ -1,7 +1,7 @@
 import cv2
 import numpy as np
 
-from .Mask import logger
+from archi.data_objects.Mask import logger
 
 
 def create_shape_mask(im, stars, increase_factor, scaling_factor, primary, secondary):
