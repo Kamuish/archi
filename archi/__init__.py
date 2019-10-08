@@ -1,1 +1,2 @@
-from .routines import Photo_Controller
+from .routines import Photo_controller
+from .output_creation import store_data
