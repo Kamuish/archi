@@ -1,7 +1,7 @@
 from astropy.io import fits
 import numpy as np
 
-from archi.masks_creation import Masks
+from .Mask import Masks
 
 from archi.utils import path_finder
 from archi.utils import create_logger, CDPP, DRP_CDPP
