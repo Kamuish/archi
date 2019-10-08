@@ -1,6 +1,6 @@
 import numpy as np
 from scipy.signal import savgol_filter
-from ARCHI.utils import create_logger
+from archi.utils import create_logger
 
 logger = create_logger("utils")
 

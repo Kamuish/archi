@@ -2,8 +2,8 @@ from astropy.io import fits
 import numpy as np
 import os
 
-from ARCHI.utils import get_optimized_mask, create_logger
-from ARCHI.utils.path_finder import path_finder
+from archi.utils import get_optimized_mask, create_logger
+from archi.utils.misc.path_finder import path_finder
 
 logger = create_logger("util")
 
@@ -16,7 +16,7 @@ def export_txt(Data_fits, path, **kwargs):
     Parameters
     ----------
     Data_fits
-        :class:`ARCHI.main.initial_loads.Data` object.
+        :class:`archi.main.initial_loads.Data` object.
     path:
         Path in which the file shall be stored
     kwargs

@@ -2,7 +2,7 @@ import numpy as np
 import json
 import os
 
-from ARCHI.utils import create_logger
+from archi.utils import create_logger
 
 logger = create_logger("util")
 

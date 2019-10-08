@@ -5,7 +5,7 @@ import logging
 from .optimizer import optimizer
 from .circular_fine_tune import circular_tuner
 
-from ARCHI.utils import create_logger
+from archi.utils import create_logger
 
 logger = create_logger("utils")
 

@@ -1,8 +1,8 @@
 from astropy.io import fits
 import os
 
-from ARCHI.utils import create_logger
-from ARCHI.utils.path_finder import path_finder
+from archi.utils import create_logger
+from archi.utils.misc import path_finder
 
 logger = create_logger("util")
 
@@ -17,7 +17,7 @@ def create_fits(master_folder, data_fits, **kwargs):
         master_folder:
             Path in which the data shall be stored
         data_fits
-            :class:`ARCHI.main.initial_loads.Data`  object with all the stars information inside
+            :class:`archi.main.initial_loads.Data`  object with all the stars information inside
         kwargs
 
     Returns

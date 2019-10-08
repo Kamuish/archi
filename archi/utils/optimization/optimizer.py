@@ -1,7 +1,7 @@
 import numpy as np
 from multiprocessing import Process, Queue
 
-from ARCHI.utils import create_logger
+from archi.utils import create_logger
 
 logger = create_logger("utils")
 
