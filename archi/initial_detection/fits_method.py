@@ -7,7 +7,7 @@ from archi.utils import create_logger
 
 logger = create_logger("initial_detection")
 
-def centers_from_fits(self, primary, secondary, stars, initial_angle,initial_offset, **kwargs):
+def centers_from_fits(primary, secondary, stars, initial_angle,initial_offset, **kwargs):
     """
     Using information stored on the fits files, we determine the centers positions. The centers are determined using
     relations between the differences in RA and DEC of all stars in relation to the known point : the central star.
