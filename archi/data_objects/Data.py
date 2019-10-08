@@ -95,7 +95,7 @@ class Data:
 
         Star.number = 0  # Reset the number of the stars every time this routine is called
 
-    def _verify_validity(func):
+    def _verify_validity(func):  # pylint: disable=no-self-argument
         """
         Used to validate the error flag before running a function.
         Decorator used inside this class
@@ -108,11 +108,13 @@ class Data:
         def on_call(self, *args, **kwargs):
             if self._error_flag:
                 logger.fatal(
-                    "Error found. Method {} is not going to run. ".format(func.__name__)
+                    "Error found. Method {} is not going to run. ".format(
+                        func.__name__
+                    )  # pylint: disable=no-member
                 )
                 return -1
             else:
-                return func(self, *args, **kwargs)
+                return func(self, *args, **kwargs)  # pylint: disable=not-callable
 
         return on_call
 
@@ -268,8 +270,12 @@ class Data:
                             mode="default", off_curve=curve, **kwargs
                         )
                         with fits.open(default_path) as file:
-                            def_points = np.pi * (file[1].header["AP_RADI"]) ** 2
-                            curr_dark = file[1].data["DARK"] / def_points
+                            def_points = (
+                                np.pi * (file[1].header["AP_RADI"]) ** 2
+                            )  # pylint: disable=no-member
+                            curr_dark = (
+                                file[1].data["DARK"] / def_points
+                            )  # pylint: disable=no-member
                             darks.append(curr_dark)
 
                     self.uncertainties_params["dark"] = np.median(darks, axis=0)
