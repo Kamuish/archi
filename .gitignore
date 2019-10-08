@@ -7,3 +7,5 @@ archi_venv/
 *.log
 *.yaml
 setup.py
+
+docs/_build
