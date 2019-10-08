@@ -100,7 +100,3 @@ export_text: 1
 
 # export the photometric data to a fit file, as well as relevant information
 export_fit: 0
-
-# export images and information to a pdf file
-export_pdf: 0
-
