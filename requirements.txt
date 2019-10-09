@@ -1,5 +1,5 @@
-matplotlib
-scipy
-numpy
-opencv-python
-astropy
+matplotlib ~= 3
+scipy ~= 1
+numpy ~= 1
+opencv-python  ~= 4
+astropy ~= 3
