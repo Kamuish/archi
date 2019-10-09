@@ -197,7 +197,19 @@ class Data:
         self._validate_forbidden_region()
 
     def get_image(self, number):
-
+        """
+        Ask for a given image. If the background grid is in use, returns the increased image
+        
+        Parameters
+        ----------
+        number : int
+            Image number
+        
+        Returns
+        -------
+        image: numpy array
+            Desired image
+        """
         if number == "all":
             return list(self._image_dict.values()) if self._image_dict else self._imgs
 
@@ -417,6 +429,14 @@ class Data:
         return 0
 
     def calculate_uncertainties(self, index):
+        """
+        Trigger the calculation of the uncertainties
+        
+        Parameters
+        ----------
+        index : int
+            Image number
+        """
         if not self.calc_uncert:
             return
         else:
@@ -487,6 +507,11 @@ class Data:
     # Properties of the class
     @property
     def stars(self):
+        """
+        Returns the list with all of the :class:`~archi.data_objects.Star_class.Star` objects.
+        If an error has been raised, returns an empty list
+        
+        """
         if not self._error_flag:
             return self._stars
         else:
@@ -530,6 +555,14 @@ class Data:
 
     @property
     def is_empty(self):
+        """
+        See if the object has been used in a run, i.e. if it has data
+        
+        Returns
+        -------
+        boolean:
+            True if it is empty or an error has been raised, False otherwise
+        """
         if not self.stars:
             return True
         return len(self.stars[0].photom) == 0 or self._error_flag

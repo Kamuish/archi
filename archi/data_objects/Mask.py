@@ -69,47 +69,50 @@ class Masks:
     @property
     def latest(self):
         """
-        Returns
-        -------
-            Latest mask
-
+            Returns the latest mask stored in the class
         """
         return self._masks[-1]
 
     @property
     def first(self):
         """
-
-        Returns
-        -------
-            First mask
+            Returns the first mask
         """
         return self._masks[0]
 
     @property
     def number_masks(self):
         """
-
-        Returns
-        -------
-            First mask
+        Return the number of masks stored in the obejct
         """
         return len(self._masks)
 
     @property
     def all(self):
+        """
+        Return a list with all of the stored masks
+        """
         return self._masks.copy()
 
     @property
     def factor(self):
+        """
+            Returns the mask's size  (i.e. circle radius or layers of pixels added to the mask)
+        """
         return self._mask_factor
 
     @property
     def size(self):
+        """ 
+            Returns the number of pixels in the mask
+        """
         return self._mask_size
 
     @property
-    def normalized_points(self):
+    def normalized_points(self): 
+        """ 
+            Returns the number of points, normalized to the "normal" grid, with 200 by 200 px
+        """
         return self._mask_size / (self.grid_increase) ** 2
 
     def __getitem__(self, item):

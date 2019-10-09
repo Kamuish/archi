@@ -1,4 +1,5 @@
 import yaml
+from functools import wraps
 
 from .photometric_process import photometry
 from archi.data_objects import Data
@@ -11,7 +12,8 @@ logger = create_logger("Photo Controller")
 
 class Photo_controller:
     """
-        Controller class that allows an easy interface with all the important functions in the module
+        Controller class that allows an easy interface with all the important functions in the module. If the no_optim parameter is set to False,
+        then it automatically starts the optimization routine, at instantiation time of the class.
     """
 
     def __init__(self, job_number, config_path="configs/config.yaml", no_optim=False):
@@ -46,7 +48,7 @@ class Photo_controller:
         -------
 
         """
-
+        @wraps(func)
         def on_call(self, *args, **kwargs):
 
             if (
@@ -86,7 +88,7 @@ class Photo_controller:
             Config values, retrieved from the file on the class initialization
         Returns
         -------
-
+            data_fits: instance of :class:`~archi.data_objects.Data.Data`, with the relevant information.
         """
 
         configs = (
@@ -120,8 +122,7 @@ class Photo_controller:
         """
         Updates the kwargs with new values. A dictionary is passed in, with keys corresponding to parameters and each
         value it's the new configuration for that specific parameter.
-        At this stage no validation is made over the passed values. Such validation occurs before the routines,
-         to make sure that the correct parameters were added.
+        At this stage no validation is made over the passed values. Such validation occurs before the routines, to make sure that the correct parameters were added.
 
         Parameters
         ----------

@@ -95,8 +95,9 @@ def shape_increase(data, factor, fac=1):
     """
     Increases the boundary of the mask by one pixel. i.e., adds one layer of pixels around the mask present in the data
     passed in.
+
     Parameters
-    ----------
+    --------------
     data:
         Array with the original shape that we wish to expand
     factor:
@@ -106,7 +107,8 @@ def shape_increase(data, factor, fac=1):
 
     Returns
     -------
-        Returns the expanded data
+        numpy array:
+            Increased image
     Notes
     -----
 

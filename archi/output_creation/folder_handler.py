@@ -3,8 +3,7 @@ import os
 
 def handle_folders(number_stars, job_number, singular=None, **kwargs):
     """
-        If the folder structure is not present, then it is created. If we only wish to output data for a singular star,
-    then no more folder are created.
+        If the folder structure is not present, then it is created. If we only wish to output data for a singular star, then no more folder are created.
 
     Parameters
     ----------

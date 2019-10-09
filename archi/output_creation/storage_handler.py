@@ -14,25 +14,23 @@ def store_data(data_fits, job_number, singular=None, **kwargs):
     """
     Stores the data extracted from the entire pipeline.
 
-    Like the controllers, it can work with a :class:`archi.main.initial_loads.Data` that was used for both parts
+    Like the controllers, it can work with a :class:`~archi.data_objects.Data.Data` object that was used for both parts
     or only for one of them.
 
     If one wishes, it can also only create the folders and extract the data only for the chosen star.
+   
     Parameters
     ----------
     data_fits:
-        :class:`archi.main.initial_loads.Data`
+        :class:`~archi.data_objects.Data.Data` object.
     job_number:
         Job number, from the supernova server. Will be used to save the parent folder inside the
         kwargs["results_folder"] to create the entire directory structure.
     singular:
-        If it's not None, then it should be a number. Only has an effect over the graphs but, on the files, the
-        light curves are all saved.
-    kwargs
+        If it's not None, then only that star's light curve is saved. Only works for the "show_results".
 
-    Returns
-    -------
-
+    kwargs: 
+        Dictionary with the configuration values. Can be obtained with the  :class:`~archi.routines.Photo_Controller.Photo_controller` parameters property
     """
     if kwargs["headless"]:
         plt.switch_backend("Agg")

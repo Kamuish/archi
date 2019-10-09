@@ -15,7 +15,7 @@ def photom_plots(data_fits, master_folder, singular=None, **kwargs):
     Parameters
     ----------
     data_fits:
-        :class:`archi.main.initial_loads.Data`  object with all the stars information inside
+        :class:`~archi.data_objects.Data.Data` object with all the stars information inside
     singular:
         If it's not None, then only that star's light curve is saved. Only works for the "show_results".
     master_folder:
@@ -23,11 +23,6 @@ def photom_plots(data_fits, master_folder, singular=None, **kwargs):
         
     kwargs:
         Configuration values that are used to change the data processed and the output data:
-
-            - debug - Compares the data from the center star with the one provided on the fits file. This previously
-                existing  lightcurve was calculated by the official pipeline
-
-            - show_results: Calculates the Cv for each star and plots it.
 
     Returns
     -------
