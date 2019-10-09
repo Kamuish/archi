@@ -7,19 +7,21 @@ Welcome to archi's documentation!
 =================================
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :caption: User Guide 
 
         Installation <user_guides/installation>
         Configuration <user_guides/configs>
+        A quick overview <user_guides/overview>
         The User interface <user_guides/user_interface>
+        The Optimization routine <user_guides/optimization>
 
 
 .. toctree::
    :maxdepth: 2
    :caption: Tutorials
 
-    How to extract Light Curves <tutorials/LC_extract>
+    Tutorial <tutorials/LC_extract>
 
 
 .. toctree::
@@ -29,6 +31,7 @@ Welcome to archi's documentation!
 
     Star operations <modules/stars>
     Mask definition process <modules/masks>
+    Outputs creation <modules/outputs>
 
 
 Indices and tables
