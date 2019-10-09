@@ -22,6 +22,7 @@ reduction pipeline (DRP), in a project named "An expansion foR the CHeops missio
         Configuration <user_guides/configs>
         A quick overview <user_guides/overview>
         The User interface <user_guides/user_interface>
+        How to access the Data  <user_guides/results>
         The Optimization routine <user_guides/optimization>
 
 
