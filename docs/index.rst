@@ -6,6 +6,14 @@
 Welcome to archi's documentation!
 =================================
 
+This project is part of the work developped during my MSc's thesis, titled "An expansion to the
+CHEOPS mission official pipeline".
+
+In this project we proposed to expand the functionality of the CHEOPS mission official data
+reduction pipeline (DRP), in a project named "An expansion foR the CHeops mission pipelIne - ARCHI
+", to maximize the scientific gains from its operation.
+
+
 .. toctree::
    :maxdepth: 1
    :caption: User Guide 
@@ -21,7 +29,7 @@ Welcome to archi's documentation!
    :maxdepth: 2
    :caption: Tutorials
 
-    Tutorial <tutorials/LC_extract>
+    Light curve extraction <tutorials/LC_extract>
 
 
 .. toctree::
@@ -31,6 +39,8 @@ Welcome to archi's documentation!
 
     Star operations <modules/stars>
     Mask definition process <modules/masks>
+    The utility scripts <modules/utility>
+
     Outputs creation <modules/outputs>
 
 

@@ -1,7 +1,8 @@
+.. _configyaml:
+
 Configuration
 ================
 
-.. _configyaml:
 In order to configure the behavior of the pipeline, one has to edit the configuration.yaml
 file, shown `in here <https://github.com/Kamuish/archi/blob/master/configuration_files/example_config_file.yaml>`_ .
 
