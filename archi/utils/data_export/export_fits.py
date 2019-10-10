@@ -2,7 +2,7 @@ from astropy.io import fits
 import os
 
 from archi.utils import create_logger
-from archi.utils.misc import path_finder
+from archi.utils import path_finder
 
 logger = create_logger("util")
 
@@ -10,19 +10,33 @@ logger = create_logger("util")
 def create_fits(master_folder, data_fits, **kwargs):
     """
     Export the results to a fits file, containing the light curves and a correspondence of star to Cv and
-     respective radius factor
+     respective radius factor. 
+
+
 
     Parameters
     ----------
         master_folder:
             Path in which the data shall be stored
         data_fits
-            :class:`archi.main.initial_loads.Data`  object with all the stars information inside
+            :class:`~archi.data_objects.Data.Data` object.
         kwargs
 
-    Returns
-    -------
 
+    Notes
+    -----
+
+        Data stored in the header unit of the file :
+            Keyword      data
+            
+            method        type of mask used
+            detect         tracking method 
+            initial        initial detection method 
+            grid           size of the background grid
+            CDPP_TYPE       CDPP algorithm in use
+        
+       In the data unit of the file, we have each star, with the corresponding
+        time, rotation angle, flux values and uncertainties
     """
 
     # TODO: store more info -> improve organization
@@ -59,7 +73,9 @@ def create_fits(master_folder, data_fits, **kwargs):
     hdr["method"] = kwargs["method"]
     hdr["detect"] = kwargs["detect_mode"]
     hdr["initial"] = kwargs["initial_detect"]
+
     hdr["grid"] = kwargs["grid_bg"]
+    hdr["CDPPTYPE"] = kwargs["CDPP_type"]
 
     primary_hdu = fits.PrimaryHDU(header=hdr)
     hdus.append(primary_hdu)

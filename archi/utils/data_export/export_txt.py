@@ -3,7 +3,7 @@ import numpy as np
 import os
 
 from archi.utils import get_optimized_mask, create_logger
-from archi.utils.misc.path_finder import path_finder
+from archi.utils import path_finder
 
 logger = create_logger("util")
 
