@@ -4,8 +4,10 @@ archi_venv/
 
 *.pyc
 *.json
-*.log
+*.log*
 *.yaml
 setup.py
 
+*workspace
 docs/_build
+results/
