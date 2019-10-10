@@ -4,21 +4,16 @@ Utility scripts
 data_export
 ^^^^^^^^^^^^^^^^
 
-.. automodule:: archi.utils.data_export.export_fits    
-    :members:
-
 .. automodule:: archi.utils.data_export.export_photo_info  
     :members:
 
-.. automodule:: archi.utils.data_export.export_txt   
-    :members:
 
-
+For details on the functions that write to disk refer to Section :ref:`outputs`.
 
 factors_handler
 ^^^^^^^^^^^^^^^^
 
-.. automodule:: archi.utils.factors_handler.factors_handler   
+.. automodule:: archi.utils.factors_handler   
     :members:
 
 
@@ -59,7 +54,7 @@ misc
 .. automodule:: archi.utils.misc.parameters_validator   
     :members:
 
-.. automodule:: archi.utils.misc.path_finder   
+.. automodule:: archi.utils.misc.path_searcher  
     :members:
 
 .. automodule:: archi.utils.misc.rotation_mats   

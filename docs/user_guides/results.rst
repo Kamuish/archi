@@ -24,7 +24,10 @@ fits file. We shall now look into the structure of each one of them.
 Text file 
 ^^^^^^^^^^^^^^
 
+:noindex: .. automodule:: archi.utils.data_export.export_txt
+
 
 Fits file 
 ^^^^^^^^^^^^^^
 
+:noindex: .. automodule:: archi.utils.data_export.export_fits
