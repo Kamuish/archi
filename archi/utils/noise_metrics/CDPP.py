@@ -23,7 +23,8 @@ def Chunks(l, n, all=False):
 
 def CDPP(flux_vals, sized=41, winlen=10, win=30, outl=True):
     """
-
+    Ported version of the K2 CDPP algorithm, implemented by Pedro Silva
+    
     Parameters
     ----------
     flux_vals:

@@ -11,12 +11,12 @@ logger = create_logger("util")
 def export_txt(Data_fits, path, **kwargs):
     """
     Stores the light curves on a text file with the following format:
-        MJD_TIME;FLUX;ROLL_ANGLE
+        MJD_TIME;ROLL_ANGLE FLux <Star i> FLUX_ERR <Star i>
 
     Parameters
     ----------
     Data_fits
-        :class:`archi.main.initial_loads.Data` object.
+        :class:`~archi.data_objects.Data.Data` object. 
     path:
         Path in which the file shall be stored
     kwargs

@@ -10,11 +10,15 @@ def photo_SaveInfo(path, data_fits):
         - mask type
         - detect mode
         - background grid
-        - all star related info
+        - all star related info 
+        
     Parameters
     ----------
-    path
-    data_fits
+        path:
+            path in which the file will be stored
+
+        data_fits:
+             :class:`~archi.data_objects.Data.Data` object.
 
     Returns
     -------

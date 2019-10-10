@@ -9,29 +9,28 @@ def DRP_CDPP(photom, jd, twidth):
     (in sample units) and returns the sqrt( meadian (var) ) / sqrt (norm) where norm
     is the average number of points in the windows.
     This implementation is robust against gaps in the light curve.
-    ----
 
     @author Sergio Hoyer, Pascal Guterman
 
     Parameters
-    ----
+    ------------------
         flux : Flux. 1d ndarray time series.
         jd : Timescale (in days). 1d ndarray of same size.
         twidth: temporal width where the CDPP is estimated (same units as JD)
 
 
     Returns
-    ----
+    --------------
         CDPP: SQRT ( MEDIAN ( VAR_ARRAY ) ) / SQRT(NORM)
         WINDOW_SIZE: CONSTANT. Number of points in rolling windows
 
 
     Syntax
-    ----
+    ---------
         cdpp, wsize = cdpp(flux, jd, twidth)
 
     Example
-    ----
+    -------------
     """
     if photom == []:
         print("No values provided for CDPP")
