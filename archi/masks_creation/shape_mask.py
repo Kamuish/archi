@@ -57,11 +57,13 @@ def create_shape_mask(im, stars, increase_factor, scaling_factor, primary, secon
     for j in range(len(contours)):  # removes small contours (under 5 points)
         if len(contours[j]) <= 11:
             to_remove.append(j)
-    for rm in to_remove:
+    for rm in reversed(to_remove):
         contours.pop(rm)
-
+    
     if len(contours) != len(stars):  # we need to have the same number of masks and stars
-        logger.fatal("Number of contours and masks does not add up")
+        logger.fatal("Number of detected contours and stars does not add up")
+        logger.fatal(" \t Contours: {}; Stars:{}".format(len(contours),len(stars)))
+
         return -1
 
     mask_dict = {}
