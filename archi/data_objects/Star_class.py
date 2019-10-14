@@ -16,6 +16,16 @@ class Star:
 
     Parameters
     ---------------
+        cdpp_type:
+            CDPP algorithm 
+            
+        pos=None:
+            Initial position
+            
+        dist = None:
+            Distance to center
+    Notes
+    -----------
         name:
             Designation of the star
         masks:
@@ -41,15 +51,15 @@ class Star:
 
     number = 0
 
-    def __init__(self, cdpp_type, pos=None):
+    def __init__(self, cdpp_type, pos=None, dist = None):
 
         # General star information
-        self.name = "Star {}".format(self.__class__.number)
         self.number = Star.number
         self.__class__.number += 1
         self.positions = [pos]
         self.init_pos = pos.copy()
-
+        self.dist_center = dist  
+        
         # Star status:
         self.out_bound = False  # True if the mask overlaps the empty zone
         self._active = True
@@ -289,6 +299,13 @@ class Star:
     def import_uncertainties(self, uncerts):
         self._uncertainties = uncerts
 
+    @classmethod
+    def reset_number(cls,new_number):
+        cls.number = new_number
+
+    @property
+    def name(self):
+        return "Star {}".format(self.number)
     # Properties:
     @property
     def is_active(self):
@@ -305,10 +322,6 @@ class Star:
         )
 
     @property
-    def has_gp_data(self):
-        return self.GP_data is not None
-
-    @property
     def mask_factor(self):
         return self.masks.factor
 
@@ -320,9 +333,6 @@ class Star:
     def mask_norm_npoints(self):
         return self.masks.normalized_points
 
-    @property
-    def GP_data(self):
-        return self._GP_data
 
     @property
     def first_mask(self):
