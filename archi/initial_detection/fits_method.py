@@ -4,6 +4,7 @@ from astropy.io import fits
 from archi.utils import path_finder
 from archi.utils.misc.rotation_mats import matrix_cnter_clock
 from archi.utils import create_logger
+from archi.data_objects import Star
 
 logger = create_logger("initial_detection")
 
@@ -38,7 +39,7 @@ def centers_from_fits(primary, secondary, stars, initial_angle,initial_offset, *
     """
 
     if primary != "fits" and secondary != "fits":
-        return
+        return stars
 
     to_calculate = []
 
@@ -114,14 +115,24 @@ def centers_from_fits(primary, secondary, stars, initial_angle,initial_offset, *
                 positions.append([x_pos, y_pos])
 
     valid_stars = 1
+    warning_mismatch = 0
+    if len(distances) != len(stars):
+        logger.warning("Mismatch between fits and dynam initial detection methods. Possible non-visible stars inside the image!!")
+        logger.warning("Creating all of the background stars from fits file; Disregarding data from 'dynam' method")
+        warning_mismatch = 1
+        stars = stars[:1]
+        Star.reset_number(1)
+
     for dist in sorted(distances[1:]):
         pos = positions[distances.index(dist)]
 
         if 1 in to_calculate:  # for all other stars
             pos = np.multiply(pos, scaling_factor) + np.floor(scaling_factor / 2)
 
-            stars[valid_stars].change_init_pos(pos)
-
-            valid_stars += 1
+            if warning_mismatch: # if the fits and dynam do not match, create from scratch
+                stars.append(Star(kwargs["CDPP_type"], positions, dist))
+            else:
+                stars[valid_stars].change_init_pos(pos)
+                valid_stars += 1
 
     return stars

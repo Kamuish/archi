@@ -27,7 +27,8 @@ def initial_dynam_centers(img, bg_grid, **kwargs):
 
     for dist in sorted(distances):
         positions = centers[distances.index(dist)]
-        stars.append(Star(kwargs["CDPP_type"], positions))
+        stars.append(Star(kwargs["CDPP_type"], positions, dist))
+    
     return stars
 
 
