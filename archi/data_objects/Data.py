@@ -327,7 +327,7 @@ class Data:
         disabled = [i.number for i in self.stars if not i.is_active]
 
         self._stars = initial_dynam_centers(self.get_image(0), self.bg_grid, **kwargs)
-
+        
         for j, star in enumerate(self._stars):
             if j in disabled:
                 star.disable()
@@ -335,6 +335,7 @@ class Data:
         self._stars = centers_from_fits(
             primary, secondary, self._stars, self.roll_ang[0], self.offsets[0], **kwargs
         )
+
 
     @_verify_validity
     def _initialize_masks(self, factor, **kwargs):
@@ -405,7 +406,6 @@ class Data:
         if circle_result == -1:
             logger.fatal("Could not create mask using the 'CIRCLE' method. ")
             return -1
-
         shape_result = create_shape_mask(
             self.get_image(0), self._stars, factor, scaling_factor, primary, secondary
         )
