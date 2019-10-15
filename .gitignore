@@ -13,3 +13,4 @@ setup.py
 *workspace
 docs/_build
 results/
+data_files/
