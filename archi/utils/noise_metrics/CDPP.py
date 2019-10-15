@@ -1,7 +1,7 @@
 import numpy as np
 from scipy.signal import savgol_filter
 from archi.utils import create_logger
-
+import matplotlib.pyplot as plt
 logger = create_logger("utils")
 
 
@@ -21,7 +21,7 @@ def Chunks(l, n, all=False):
                 break
 
 
-def CDPP(flux_vals, sized=41, winlen=10, win=30, outl=True):
+def CDPP(flux_vals,indx_vals, sized=41, winlen=10, win=30, outl=True):
     """
     Ported version of the K2 CDPP algorithm, implemented by Pedro Silva
     
@@ -47,7 +47,7 @@ def CDPP(flux_vals, sized=41, winlen=10, win=30, outl=True):
         logger.fatal("No values provided")
         return float("nan")
 
-    planeta2 = SavGol(flux_vals, win=sized)
+    planeta2 = SavGol2(flux_vals,indx_vals, win=sized)
 
     planeta2 = planeta2 / np.nanmedian(planeta2)
 
@@ -173,3 +173,72 @@ def SavGol(y, win=49):
         return y - savgol_filter(y, win, 2) + np.nanmedian(y)
     else:
         return y
+        
+def SavGol2(lc,ind,win,withh=False):
+
+
+	div = (ind[-1]-ind[0])/len(ind)
+	maxdiv = div*int(np.sqrt(win/2)+win)
+	mindiv = div*int(win-np.sqrt(win/2))
+	
+	
+	Ys = np.zeros((len(lc),win))
+	pad = np.pad(lc,(win,win),"symmetric")
+	
+	metric = np.arange(len(lc))
+	for i in range(len(lc)):
+		metric[i] = pad[i+win+win//2]-pad[i+win-win//2]
+	metric2 = np.nanmedian(np.sqrt(lc)) 
+	
+	eai = ind[1]-ind[0]
+	padi= np.append(np.linspace(ind[0]-win*eai,ind[0],win,endpoint=False),ind)
+	padi= np.append(padi,np.linspace(ind[-1],ind[-1]+win*eai,win,endpoint=False))
+	
+
+	Id = np.zeros((len(lc),win))
+	for i in range(len(lc)):
+		Ys[i]+=pad[i+win-win//2:i+win+win//2+1]
+		Id[i]+=padi[i+win-win//2:i+win+win//2+1] - padi[i+win]
+	
+	b = [b[-1]-b[0] for b in Id]
+	
+	Ks = np.sqrt(Ys)
+	
+	bgood1 = np.where((b<mindiv)|(b>maxdiv))
+	bgood = np.where(metric>metric2)
+
+	if len(bgood1[0])==0 :
+		#SavGol can be used
+		return SavGol(lc,win)
+
+	elif len(bgood[0])==0:
+		#SavGol can be used
+		return SavGol(lc,win)
+		
+	#data set requires SavGol2
+	
+	
+	C = np.zeros((len(lc),win))
+	C1 = np.zeros((len(lc),win))
+
+	for i in range(len(lc)):
+		A = np.zeros((win,3))
+
+		for j in range(len(A.T)):
+			A.T[j] = Id[i]**j				
+			
+		Kov = np.diag(Ks[i])
+		Kov = np.linalg.inv(Kov)
+		C[i] = np.linalg.solve(np.dot(np.dot(A.T,Kov),A),np.dot(A.T,Kov))[0]
+		C1[i]= np.linalg.solve(np.dot(A.T,A),A.T)[0]
+
+
+		
+	Model = np.sum(C*Ys,axis = 1)
+	Model1= np.sum(C1*Ys,axis= 1)
+	if withh:
+		plt.plot(ind,lc)
+		plt.plot(ind,Model)
+		plt.show()
+	return lc - Model + np.nanmedian(lc)
+
