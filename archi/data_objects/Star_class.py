@@ -121,10 +121,11 @@ class Star:
         win = 30
         outl = True
 
-        if self.cdpp_type == "DRP" and time is None:
-            print("Missing the time to use DRP's CDPP")
+        if time is None:
+            logger.fatal("Missing the time to use DRP's CDPP")
+            
         if self.cdpp_type == "K2" or time is None:
-            cv = CDPP(self.photom, sized, winlen, win, outl)
+            cv = CDPP(self.photom,time, sized, winlen, win, outl)
 
         elif self.cdpp_type == "DRP":
 
@@ -266,19 +267,6 @@ class Star:
         """
         logger.info("Star {} was disabled".format(self.number))
         self._active = False
-
-    def add_GP_results(self, results):
-        """
-        Adds the results obtained with the GPs to this star
-        Parameters
-        ----------
-        results
-
-        Returns
-        -------
-
-        """
-        self._GP_data = results
 
     def import_photom(self, photom):
         """

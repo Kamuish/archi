@@ -21,7 +21,7 @@ def Chunks(l, n, all=False):
                 break
 
 
-def CDPP(flux_vals,indx_vals, sized=41, winlen=10, win=30, outl=True):
+def CDPP(flux_vals,times, sized=41, winlen=10, win=30, outl=True):
     """
     Ported version of the K2 CDPP algorithm, implemented by Pedro Silva
     
@@ -29,6 +29,8 @@ def CDPP(flux_vals,indx_vals, sized=41, winlen=10, win=30, outl=True):
     ----------
     flux_vals:
         flux values
+    times:
+        time array
     sized:
         Since we are calculating the CDPP for 1 hour. Window for the Savgol filter
     winlen:
@@ -47,7 +49,7 @@ def CDPP(flux_vals,indx_vals, sized=41, winlen=10, win=30, outl=True):
         logger.fatal("No values provided")
         return float("nan")
 
-    planeta2 = SavGol2(flux_vals,indx_vals, win=sized)
+    planeta2 = SavGol2(flux_vals,times, win=sized)
 
     planeta2 = planeta2 / np.nanmedian(planeta2)
 
