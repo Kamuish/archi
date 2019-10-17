@@ -50,6 +50,7 @@ def create_shape_mask(im, stars, increase_factor, scaling_factor, primary, secon
     im *= 255
     im = np.uint8(im)
 
+    # TODO: change this threshold
     _, thresh = cv2.threshold(im, 10, 255, 0)
     contours, _ = cv2.findContours(thresh, 1, 2)
 
