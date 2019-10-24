@@ -124,7 +124,7 @@ class Star:
         if time is None:
             logger.fatal("Missing the time to use DRP's CDPP")
             
-        if self.cdpp_type == "K2" or time is None:
+        if self.cdpp_type == "K2":
             cv = CDPP(self.photom,time, sized, winlen, win, outl)
 
         elif self.cdpp_type == "DRP":
