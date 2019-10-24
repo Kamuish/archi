@@ -74,7 +74,7 @@ def DRP_CDPP(photom, jd, twidth):
     # Normalization factor of the standard deviation
     norm = np.clip(xwidth, 1, nexp)
 
-    return np.sqrt(np.nanmean(vararr)) / np.sqrt(norm), wsize
+    return np.sqrt(np.nanmean(vararr)) / np.sqrt(norm)
 
 
 if __name__ == "__main__":
