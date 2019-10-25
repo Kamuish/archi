@@ -1,6 +1,6 @@
 import glob
 import re
-
+import os 
 
 def path_finder(mode, off_curve=None, **kwargs):
     """
@@ -22,20 +22,20 @@ def path_finder(mode, off_curve=None, **kwargs):
 
     if mode == "subarray":
 
-        x = glob.glob(kwargs["base_folder"] + r"*eduction*/COR/**")
+        x = glob.glob(os.path.join(kwargs["base_folder"], r"*eduction*/COR/**"))
         cc = " ".join(x)
 
         return re.compile(r"\S+_Sub\S+.fits").findall(cc)[0]
 
     elif mode == "default":
-        x = glob.glob(kwargs["base_folder"] + r"*eduction*/PHE/**")
+        x = glob.glob(os.path.join(kwargs["base_folder"], r"*eduction*/PHE/**"))
         cc = " ".join(x)
 
         curve_2_search = kwargs["official_curve"] if not off_curve else off_curve
         return re.compile(r"\S+{}\S+.fits".format(curve_2_search)).findall(cc)[0]
 
     elif mode == "stars":
-        x = glob.glob(kwargs["base_folder"] + r"CH_*/data/**")
+        x = glob.glob(os.path.join(kwargs["base_folder"], r"CH_*/data/**"))
 
         cc = " ".join(x)
         return re.compile(r"\S+Star\S+.fits").findall(cc)[0]
