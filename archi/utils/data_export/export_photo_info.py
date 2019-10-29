@@ -26,7 +26,7 @@ def photo_SaveInfo(path, data_fits):
     """
 
     with open(os.path.join(path, "photo_info.txt"), mode='w') as file:
-        file.write("Used file: {}\n".format(data_fits.used_file))
+        file.write("Used file: {}\n ".format(data_fits.used_file))
         file.write("Mask type: {}\n".format(data_fits.mask_type))
         file.write("Detect mode: {}\n".format(data_fits.detect_mode))
         file.write("Background grid: {}\n".format(data_fits.bg_grid))

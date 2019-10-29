@@ -168,7 +168,7 @@ class Photo_controller:
 
         vals = general_optimizer(
             self.run,
-            data_f=Data(),
+            data_f=Data('---'),
             job_number=self.job_number,
             max_process=self.kwargs["optim_processes"],
             **self.kwargs
