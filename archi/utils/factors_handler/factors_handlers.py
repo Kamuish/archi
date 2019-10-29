@@ -6,7 +6,7 @@ from archi.utils import create_logger
 
 logger = create_logger("util")
 
-def get_file_name(path):
+def get_file_name(path, storage_location):
     """
     Extracts the last part of the path, i.e. the dataset folder name, to store the optimized masks
 
@@ -26,7 +26,7 @@ def get_file_name(path):
     
     splitted_path = path.split("/")
     file_name = splitted_path[-2] if not splitted_path[-1] else splitted_path[-1]
-    json_full_path = os.path.join(path, "{}.json".format(file_name))
+    json_full_path = os.path.join(storage_location, "{}.json".format(file_name))
 
     return json_full_path
 
@@ -46,8 +46,9 @@ def store_optimized_radius(new_dict, **kwargs):  # TODO: improve save for method
     size_bg_grid = str(kwargs["grid_bg"])
     initial_method = kwargs["initial_detect"]
 
-    json_full_path = os.path.join(json_path, "{}.json".format(get_file_name(kwargs["base_folder"])))
+    json_full_path = get_file_name(kwargs["base_folder"], kwargs["optimized_factors"])
 
+    print(json_full_path)
     if os.path.exists(json_full_path):
         with open(json_full_path, "r") as data_file:
             try:
@@ -123,7 +124,7 @@ def get_optimized_mask(**kwargs): # TODO: improve load for method combination
     logger.info("Retrieving optimized factors")
 
     json_path = kwargs["optimized_factors"]
-    json_full_path = os.path.join(json_path, "{}.json".format(get_file_name(kwargs["base_folder"])))
+    json_full_path = get_file_name(kwargs["base_folder"],kwargs["optimized_factors"])
 
     if os.path.exists(json_full_path):
         with open(json_full_path, "r") as data_file:
