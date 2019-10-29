@@ -140,8 +140,9 @@ class Photo_controller:
                     "The {} configuration value does not exist".format(key)
                 )
             new_dict[key] = value
-
+        
         self.kwargs = new_dict
+        self.data_fits.used_file = self.kwargs["base_folder"]
 
     def optimize(self):
         """
