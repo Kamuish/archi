@@ -77,7 +77,6 @@ class Data:
         self.base_folder = ""
         self.mask_type = ""
         self.detect_mode = ""
-        self.used_file = ""
         self.bg_grid = 0
 
         # data loaded from the fits file
