@@ -33,7 +33,7 @@ class Data:
 
     """
 
-    def __init__(self):
+    def __init__(self, filename):
         # error flag
         self._error_flag = 0
 
@@ -41,7 +41,7 @@ class Data:
         self.base_folder = ""
         self.mask_type = ""
         self.detect_mode = ""
-        self.used_file = ""
+        self.used_file = filename
         self.bg_grid = 0
 
         # data loaded from the fits file

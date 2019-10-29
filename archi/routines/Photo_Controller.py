@@ -27,7 +27,7 @@ class Photo_controller:
             kwargs = config_path
 
         self.kwargs = kwargs
-        self.data_fits = Data() 
+        self.data_fits = Data(kwargs['base_folder']) 
 
         if no_optim:
             self.kwargs["optimize"] = 0
