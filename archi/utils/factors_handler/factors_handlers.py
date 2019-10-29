@@ -26,7 +26,7 @@ def get_file_name(path):
     
     splitted_path = path.split("/")
     file_name = splitted_path[-2] if not splitted_path[-1] else splitted_path[-1]
-    json_full_path = os.path.join(json_path, "{}.json".format(file_name))
+    json_full_path = os.path.join(path, "{}.json".format(file_name))
 
     return json_full_path
 
