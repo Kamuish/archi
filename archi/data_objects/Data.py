@@ -41,6 +41,7 @@ class Data:
         self.base_folder = ""
         self.mask_type = ""
         self.detect_mode = ""
+        self.init_detection_mode = ""
         self.used_file = filename
         self.bg_grid = 0
 
@@ -140,6 +141,7 @@ class Data:
         """
         self._reset()
         self.base_folder = kwargs["base_folder"]
+        self.init_detection_mode = kwargs['initial_detect']
         self.detect_mode = kwargs["detect_mode"]
         self.mask_type = kwargs["method"]
         self.bg_grid = kwargs["grid_bg"]
