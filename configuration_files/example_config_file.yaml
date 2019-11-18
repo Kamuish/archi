@@ -6,7 +6,7 @@
 
 # GENERAL PATHS
 
-# folder in which the fits files are stored
+# folder in which the fits files are stored, i.e. the path to the folder that comes out of the DRP
 base_folder: ""
 
 # path to save and search for the optimized radius file
