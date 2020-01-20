@@ -11,7 +11,9 @@ We felt that there was a need for a pipeline capable of analysing those stars an
 built on top of the DRP, to analyse those stars. Archi has been tested with simulated data, showing proper behaviour.
 ON the target star we found photometric precisions either equal or slightly better than the DRP. For the background stars we found photometric preicision 2 to 3 times higher than the target star.
 
+# How to install archi 
 
+#
 
 # Known Problems
 
