@@ -4,7 +4,7 @@ Structure of the outputs
 ============================
 
 There are two different ways to get access to the data extracted from the images: from the  :class:`~archi.data_objects.Data.Data` object or
-from the files that are written to the disk, with the :function:`archi.output_creation.storage_handler.store_data`.
+from the files that are written to the disk, with the :py:func:`~archi.output_creation.storage_handler.store_data` function.
 
 
 
@@ -24,10 +24,13 @@ fits file. We shall now look into the structure of each one of them.
 Text file 
 ^^^^^^^^^^^^^^
 
-:noindex: .. automodule:: archi.utils.data_export.export_txt
 
-
+.. automodule:: archi.utils.data_export.export_txt
+    :members:
+    
 Fits file 
 ^^^^^^^^^^^^^^
 
-:noindex: .. automodule:: archi.utils.data_export.export_fits
+.. automodule:: archi.utils.data_export.export_fits
+    :members:
+    
