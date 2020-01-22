@@ -17,7 +17,7 @@ thus being able to find all that is necessary.
 In Disk
 --------------
 
-There are two possible ways of storing data on disk: we either store data as  a text file, whose structure does not allow for proper organization of the data, or a 
+There are two possible ways of storing data on disk: we either store data as  a text file, whose structure does not allow for proper organization of the data, or a  	
 fits file. We shall now look into the structure of each one of them. 
     
 
