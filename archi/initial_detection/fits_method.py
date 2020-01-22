@@ -15,6 +15,7 @@ def centers_from_fits(primary, secondary, stars, initial_angle,initial_offset, *
 
     After determining the center, we use the primary and secondary arguments to see if this function should change
     the initial position of the star.
+
     Parameters
     ----------
     primary: str
@@ -30,7 +31,8 @@ def centers_from_fits(primary, secondary, stars, initial_angle,initial_offset, *
     initial_offset: list    
         DRP's estimation of the central star location
     kwargs
-
+        kwargs
+        
     Returns
     -------
         List:
