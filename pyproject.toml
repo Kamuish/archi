@@ -1,0 +1,19 @@
+[tool.poetry]
+name = "archi"
+version = "1.0.0"
+description = "Photometry for CHEOPS's background stars"
+authors = ["Kamuish <andremiguel952@gmail.com>"]
+
+[tool.poetry.dependencies]
+python = "^3.8"
+matplotlib = "^3.1.2"
+pyyaml = "^5.3"
+opencv-python = "^4.1.2"
+scipy = "^1.4.1"
+astropy = "^4.0"
+
+[tool.poetry.dev-dependencies]
+
+[build-system]
+requires = ["poetry>=0.12"]
+build-backend = "poetry.masonry.api"
