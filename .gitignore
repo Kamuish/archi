@@ -16,6 +16,11 @@ setup.py
 *workspace
 docs/_build
 docs/build_html
+.coverage 
+.pylintrc 
+pip
+*.lock
+
 
 results/
 data_files/
