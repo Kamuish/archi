@@ -1,6 +1,9 @@
 .idea
 
-archi_venv/
+.archi/
+
+dist/
+
 
 *.pyc
 *.json
@@ -12,5 +15,7 @@ setup.py
 
 *workspace
 docs/_build
+docs/build_html
+
 results/
 data_files/
