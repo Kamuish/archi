@@ -35,7 +35,7 @@ Furthermore, if we want to change the configuration parameters of archi without 
                                  config_path="<path_to_file>/config.yaml"
                                  )
 
-    configs_override = {'base_folder': "/home/amiguel/archi/data_files/CHEOPSim_job7796/",
+    configs_override = {'base_folder': "<new_path>",
                         "grid_bg": 0,
                         "initial_detect": 'dynam',
                         "method": "shape",
@@ -49,9 +49,10 @@ Furthermore, if we want to change the configuration parameters of archi without 
                         'CDPP_type': "DRP",
                         "debug": 1,
                         "plot_realtime": 0}
+                        
+    # we can overrid all parameters from the file. Typically, one only needs to change these
 
-    controller.change_parameters(configs_override) # we can overrid all parameters from the file. Typically, one only needs to change these
-
+    controller.change_parameters(configs_override) 
     data_fits = controller.run()
 
     store_data(data_fits, job_number = 1, **controller.parameters)
