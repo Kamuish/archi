@@ -72,8 +72,8 @@ General configurations
     * Activate low memory mode. Recommended to be active when working with the background grids or larger data sets.
 
 * CDPP_type: Which noise metric to use;
-    * K2
-    * CDPP
+    * K2   
+    * CDPP - algorithm implemented in the DRP
 
 * debug: 
     *   If it's 1 then we will have a comparison between the data obtained using this method and the one from the official pipeline. THis comparison is only done for the center star, since the official pipeline does not work for the outer stars.
