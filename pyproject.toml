@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "archi"
+name = "pyarchi"
 version = "1.0.0"
 description = "Photometry for CHEOPS's background stars"
 authors = ["Kamuish <andremiguel952@gmail.com>"]
@@ -16,6 +16,7 @@ astropy = "^4.0"
 coverage = "^5.0.3"
 pytest = "^5.3.4"
 pytest-cov = "^2.8.1"
+twine = "^3.1.1"
 
 [build-system]
 requires = ["poetry>=0.12"]
