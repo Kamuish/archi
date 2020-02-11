@@ -1,2 +1,2 @@
-from pyarchi.routines import Photo_controller
-from pyarchi.output_creation import store_data
+from .routines import Photo_controller
+from .output_creation import store_data
