@@ -3,18 +3,18 @@ Masks
 
 How to store them
 --------------------
-.. automodule:: archi.data_objects.Mask
+.. automodule:: pyarchi.data_objects.Mask
     :members:
 
 
 Shape Based mask
 --------------------
 
-.. automodule:: archi.masks_creation.shape_mask
+.. automodule:: pyarchi.masks_creation.shape_mask
     :members:
 
 Circular mask
 --------------------
 
-.. automodule:: archi.masks_creation.circular_mask
+.. automodule:: pyarchi.masks_creation.circular_mask
     :members:

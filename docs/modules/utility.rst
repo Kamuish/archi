@@ -4,7 +4,7 @@ Utility scripts
 data_export
 ^^^^^^^^^^^^^^^^
 
-.. automodule:: archi.utils.data_export.export_photo_info  
+.. automodule:: pyarchi.utils.data_export.export_photo_info  
     :members:
 
 
@@ -13,31 +13,31 @@ For details on the functions that write to disk refer to Section :ref:`outputs`.
 factors_handler
 ^^^^^^^^^^^^^^^^
 
-.. automodule:: archi.utils.factors_handler   
+.. automodule:: pyarchi.utils.factors_handler   
     :members:
 
 
 noise_metrics
 ^^^^^^^^^^^^^^^^
 
-.. automodule:: archi.utils.noise_metrics.CDPP   
+.. automodule:: pyarchi.utils.noise_metrics.CDPP   
     :members:
 
 
-.. automodule:: archi.utils.noise_metrics.DRP_CDPP   
+.. automodule:: pyarchi.utils.noise_metrics.DRP_CDPP   
     :members:
 
 
 optimization
 ^^^^^^^^^^^^^^^^
 
-.. automodule:: archi.utils.optimization.optimizer   
+.. automodule:: pyarchi.utils.optimization.optimizer   
     :members:
 
-.. automodule:: archi.utils.optimization.circular_fine_tune   
+.. automodule:: pyarchi.utils.optimization.circular_fine_tune   
     :members:
 
-.. automodule:: archi.utils.optimization.threaded_optimization   
+.. automodule:: pyarchi.utils.optimization.threaded_optimization   
     :members:
 
 
@@ -45,20 +45,20 @@ misc
 ^^^^^^^^^^^^^^^^
 
 .. function:: calculate_moments(bg_grid, img)
-.. automodule:: archi.utils.misc.calculate_moments.calculate_moments
+.. automodule:: pyarchi.utils.misc.calculate_moments.calculate_moments
     :members:
 
-.. automodule:: archi.utils.misc.logger_setup   
+.. automodule:: pyarchi.utils.misc.logger_setup   
     :members:
 
-.. automodule:: archi.utils.misc.parameters_validator   
+.. automodule:: pyarchi.utils.misc.parameters_validator   
     :members:
 
-.. automodule:: archi.utils.misc.path_searcher  
+.. automodule:: pyarchi.utils.misc.path_searcher  
     :members:
 
-.. automodule:: archi.utils.misc.rotation_mats   
+.. automodule:: pyarchi.utils.misc.rotation_mats   
     :members:
 
-.. automodule:: archi.utils.misc.timer   
+.. automodule:: pyarchi.utils.misc.timer   
     :members:

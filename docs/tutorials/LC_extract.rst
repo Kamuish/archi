@@ -13,7 +13,7 @@ to get light curves from all of the stars.
 
 .. code:: python
 
-    from archi import Photo_controller, store_data
+    from pyarchi import Photo_controller, store_data
 
     controller = Photo_controller(job_number = 1,
                                  config_path="<path_to_file>/config.yaml"

@@ -12,17 +12,17 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('/home/amiguel/archi/'))
+sys.path.insert(0, os.path.abspath('../pyarchi/'))
 
 
 # -- Project information -----------------------------------------------------
 
-project = 'archi'
+project = 'pyarchi'
 copyright = '2019, Kamuish'
 author = 'Kamuish'
 
 # The full version, including alpha/beta/rc tags
-release = '0'
+release = '1'
 
 
 # -- General configuration ---------------------------------------------------
