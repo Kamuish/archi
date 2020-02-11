@@ -30,7 +30,14 @@ class Data:
             all the images in the fits file.
         stars:
             List in which all elements are a "Star" object that holds information of one star.
-
+        mask_type:
+            type of mask. either circle or shape 
+        detect_mode:
+            detection mode used
+        init_detection_mode:
+            initial detection mode
+        mjd_time:
+            mjd time of the observations
     """
 
     def __init__(self, filename):
@@ -58,7 +65,7 @@ class Data:
         self._image_dict = {}
         self.low_mem = 0
         self.calc_uncert = False
-        self.uncertainties_params = {}
+        self.uncertainties_params = {}  # to estimate the uncertainties for our data
 
     def _reset(self):
         """
