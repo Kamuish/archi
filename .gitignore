@@ -9,10 +9,9 @@ dist/
 *.json
 *.log*
 *.yaml
-setup.py
 *.tar
 *CHEOPSim*
-
+*.egg_info
 *workspace
 docs/_build
 docs/build_html
