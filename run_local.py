@@ -1,7 +1,7 @@
 
 import matplotlib.pyplot as plt
 import numpy as np
-import archi
+import pyarchi
 from matplotlib.lines import Line2D
 import matplotlib 
 
@@ -10,8 +10,9 @@ def main():
     job_number = 1
     n_tasks = 2
 
-    controller = archi.Photo_controller(job_number, config_path="/home/amiguel/archi/configuration_files/config.yaml",
+    controller = pyarchi.Photo_controller(job_number, config_path="/home/amiguel/archi/configuration_files/config.yaml",
                                         no_optim=1)
+
     configs_override = {'base_folder': "/home/amiguel/archi/data_files/CHEOPSim_job7796/",
                         "grid_bg": 0,
                         "initial_detect": 'dynam',
@@ -27,7 +28,7 @@ def main():
                         "debug": 1,
                         "plot_realtime": 0}
 
-        controller.change_parameters(configs_override)
+    controller.change_parameters(configs_override)
     controller.optimize()
     data_fits = controller.run()
 
