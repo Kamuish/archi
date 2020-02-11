@@ -1,3 +1,4 @@
+[![Documentation Status](https://readthedocs.org/projects/archi/badge/?version=latest)](https://archi.readthedocs.io/en/latest/?badge=latest)
 # ARCHI - An expansion to the CHEOPS mission official pipeline
 
 CHEOPS mission, one of ESA's mission has been launched in December 2019. 
