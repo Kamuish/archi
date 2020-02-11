@@ -7,7 +7,6 @@ from pyarchi.utils import my_timer
 from pyarchi.utils import create_logger
 
 logger = create_logger("main")
-plt.switch_backend("TkAgg")
 
 
 @my_timer
@@ -38,6 +37,8 @@ def photometry(data_fits, **kwargs):
 
     if kwargs["headless"]:
         plt.switch_backend("Agg")
+    else:
+        plt.switch_backend("TkAgg")
 
     for index in range(data_fits.image_number):
         data_fits.update_stars(index)
