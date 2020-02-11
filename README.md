@@ -14,7 +14,15 @@ ON the target star we found photometric precisions either equal or slightly bett
 
 # How to install archi 
 
-#
+The pipeline is written in Python3, and most features should work on all versions. However, so far, it was only tested on python 3.6, 3.7 and 3.8
+
+To install, simply:
+    pip install pyarchi
+
+# How to use the library 
+
+A proper introduction to the library, alongside documentation of the multiple functions and interfaces can be found [here](https://archi.readthedocs.io/en/latest/)
+
 
 # Known Problems
 
