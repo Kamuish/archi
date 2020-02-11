@@ -11,7 +11,7 @@ dist/
 *.yaml
 *.tar
 *CHEOPSim*
-*.egg_info
+*.egg*
 *workspace
 docs/_build
 docs/build_html
