@@ -67,7 +67,7 @@ How to plot the outputs
 By default archi creates some plots, that are stored in the created folders, containing information of the light curves from
 each star and by comparing the target one against the DRP.
 
-However, if we want to do so manually, we can:
+However, if we want to do so manually, we can do it this way:
 
 .. code:: python 
     from pyarchi import Photo_controller, store_data
@@ -86,3 +86,4 @@ However, if we want to do so manually, we can:
         plt.ylabel("Flux [ADU]")
         plt.show()
 
+In order to better understand what information one can get from the controller, stars and data_fits, please refer back to relevant documentation.
