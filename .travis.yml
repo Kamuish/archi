@@ -9,8 +9,8 @@ install:
 # command to run tests
 
 script:
+  - echo foo
 
-  
 deploy:
   provider: pypi
   user: "__token__"
