@@ -20,6 +20,7 @@ docs/build_html
 pip
 *.lock
 
-
+teste.py
+*.sh
 results/
 data_files/
