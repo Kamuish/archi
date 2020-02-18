@@ -1,5 +1,4 @@
 import numpy as np
-import matplotlib.pyplot as plt
 
 
 def DRP_CDPP(photom, jd, twidth):
@@ -79,4 +78,3 @@ def DRP_CDPP(photom, jd, twidth):
 
 if __name__ == "__main__":
     pass
-
