@@ -54,7 +54,7 @@ class Photo_controller:
             if (
                 func.__name__ == "run" and self.kwargs["optimize"]
             ):  # pylint: disable=no-member
-                pass
+                pass   # during optimization process there are no checks
             else:
                 wrong_params, warnings, kwargs = parameters_validator(**self.kwargs)
                 if any(warnings):
@@ -68,6 +68,7 @@ class Photo_controller:
                     logger.fatal("\t Bad parameters: {}".format(len(wrong_params)))
                     [logger.fatal("\t \t" + wrong_param) for wrong_param in wrong_params]
                     return -1
+
             if func.__name__ == "__optimize": # pylint: disable=no-member
                 return func(self)  # pylint: disable=not-callable
             else:
@@ -105,11 +106,13 @@ class Photo_controller:
         self.data_fits = photometry(data_fits = data_fits, **configs)
 
         if not self.kwargs["optimize"]:
-            logger.warning("Checking for out of bounds masks:")
+            logger.info("Checking for out of bounds masks:")
+            found = False 
             for star in self.data_fits.stars:
                 if star.out_bound:
-                    logger.warning("\t \t Star {} is out of bounds".format(star.number))
-
+                    logger.warning("\t\t Star {} is out of bounds".format(star.number))
+                    found = True 
+            print("\t{}\n==============//==============".format("-> Found nothing" if not found else ''))
         if data_fits.abort_process:
             logger.fatal("Problems were found. Could not run properly !!!!!")
             raise Exception("Something went wrong")
@@ -139,6 +142,8 @@ class Photo_controller:
                 raise AttributeError(
                     "The {} configuration value does not exist".format(key)
                 )
+            if key == 'optimize' and value != 0:
+                raise KeyError("Cannot set optimize parameter to one. Use the .optimize() method to manually trigger the optimization routine")
             new_dict[key] = value
         
         self.kwargs = new_dict
