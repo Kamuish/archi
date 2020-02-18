@@ -9,7 +9,7 @@ script:
 - echo foo
 deploy:
   provider: pypi
-  user: __token__
+  user: Kamuish
   password:
     secure: "UsWQUxhfK/YsYPqGHlhZnAKvaAEekWZtHZk/vbPenLp7wI6PTiy+zvH4wrXLM2aaXe4KBqNTc68dIfrmFYIZ1rC32CIuvvmeOS3iE9fAuQHzCq31qsD9dhvSuM8Jph/B8TtcMr9VBv+9ealVgnnEfeFDrgiQJuSsleCEV61Efn1PX8eYaWTuqicZuj4ztvzJOsaGWA1KBNoiR4gVxyulOknKPKB/iJ/MsPS/pckhY4/JSF146eW4TS6Kr3I3jcPssUcl3Rz+jEvVjXKQ7ZaY06RIUBvWSaDGo1Hy3sB256LIFW5eAiVw60kXlYDnlYjKMPdjHbFqPOlTYH/ICsum1AQ6Rr6Nva0aBBsh5qv5wRxQ+PX/8TVZEqOhg0D8Z6J/xng+UK+tf49j0QoBS4hjn0J1tZd2/FMgMAfvjrbXpm2T4EWA3HLLNZUk/ORi4RP/j5i+MzTEWJJZ9kVboem60sLfV5rlTyQyPKpnSrAifOhuLby0lDAasBBvhH+nzBIjjfHJk0JFEMnpuBqlF0JZuKguf9GOXm5Y6drLfTr7ZbzvJJqtU6iHOfzABB8ylFIhRpmXTyLO9vDDwrqd36pzj4AsotTUd5evqQfOc4e8jU+Lg+YRXSZ6++jwHqCIlQs5h94Pv+fFdDmOlnXZP+xVgxe302UOjUb8w2+72K9XErI="  distributions: sdist
   on:
