@@ -6,10 +6,11 @@ python:
 # command to install dependencies
 install:
   - pip install -r requirements.txt
-  - pip install twine
 # command to run tests
 
+script:
 
+  
 deploy:
   provider: pypi
   user: "__token__"
