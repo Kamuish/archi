@@ -9,8 +9,9 @@ script:
 - echo foo
 deploy:
   provider: pypi
-  user: "$username"
-  password:"$password"
+  user: __token__
+  password:
+    secure: "JnGDtX2nH43SNAFxFpAIvDu8t8xwjFunpxap3ll88krhdKUbxf6fBfUorvRUjNvDSYD9gRE4jAIm86Oj24h0hhLPRVl3ciElDxoBS5OgqJgaUgq8temQpfuvwmjOjkEPdsI0n5IjYqqDTuQ/T4Eifsb+gqQ/KZI+wC0jgs2HEab0Ol7TUYMBtTbfOuF/M0DHzGewWLIVegAqQnLA3BJcgNKwTG4dY5DN+VwuWDeF/XiguuYYQ55eRR9rVlUDikP5b9DQVloGrKD1NrHvqnMtYwX5eIBxTD+DbpZVcutw6vi6qWEmjKW78aQC4PIpWsIkHb3fGj1k2OH6Qe+MpusuaOLEBI9ghW5vOYaQuvJjUN2KyIP1cYKCMuy+F8QFJv7cqaZwHeA7tukKNBwQLqs4ph9oGnBYqa64vUd8GuCsUnlLoLfTCbKJdhmNh8m1SeGw3A58KhKCYznnLfPiRWql6MkKdlSgnNLZEhuxSXJWCsZ/HmavduyiOjkVm/cfiPzcRkiXl61VCX/VZBqCwVgQdQg9gacvl5MiKv3NytTFTe8WpHVdqmgzOPLkLUb8WJUnuWt1AqkiScS74dS2kQLJQOgMLpzlZVkePX8O3AilF2vloLx3lgC/Mg50NmZjBtpaiIUQ0gnYI6st9XxzBcBhHv4tSqOKVqrx2NyskvX2q0Y="
   distributions: sdist
   on:
     branch: master
