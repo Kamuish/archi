@@ -1,0 +1,24 @@
+language: python
+python:
+  - "2.7"
+  - "3.4"
+  - "3.5"
+  - "3.6"      # current default Python on Travis CI
+  - "3.7"
+  - "3.8"
+  - "3.8-dev"  # 3.8 development branch
+  - "nightly"  # nightly build
+# command to install dependencies
+install:
+  - pip install -r requirements.txt
+  - pip install twine
+# command to run tests
+script:
+  - python setup.py sdist
+  - python -m twine upload dist/*
+
+
+deploy:
+  provider: pypi
+  user: "__token__"
+  password: "iPMUNM0uDMX9rDHFRBb2R5KykZXfseqzO8cTTjzz3W12w2YaxuPRY7QibP1+6Mr94xWTJgjSjDRQyoNhhxBTY1t1aD/O3KgSAgWOfl99vfomC7dn3vG+DCNrrp2m7q+5AEd23KhxwG8lhuaF3SCj3yw7YA+AkKRSKjNMJXTuv7j73FFyz6+ryukgu+qih5l/N4tAH7ulkTNzfdCvnsNLZDxFm6EnzxZnexs60alVAa8hCNmy0Z8t9ykw2gOVlaFjv7RJnyF5Oi2kcCPlU7P/4LhVS7goYAPB4V91EfboeS1TjWR+jPQcd3zIjxw1XKdBuSx0sbdnSAsxf4sodpN4p3e6BKjAY1wZACXDSP1q6bJyp6xgN2z+YNLAwA8ROA29tqm+uGGcIC26iWw8Znma60tLEii9g9cgPSpZ2I1D8bfccYtm4qWtcR21f1SICOaTys/TgqmS9ZUJK9vCdBE7ifXnKDuoeuZk/famjBOd5oHYeyokc0UN1aoihsdvmdjO0CBtUGSGcPQaTOG1L348O212o/WC1vISDGPnL49z3dhLLlFf8q7NPEZ/eZf+CbK6UmZ240MTK99Q8uxOfqy3fxFC2aKmad/blLDuMdHNbNha9eaLQDLaDOK4dOFAFTXIiEOq3TyGWJ6MijAgwktfOfaUG58nZfmLgFvG7jhBBAM="
