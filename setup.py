@@ -17,7 +17,8 @@ import os
 DOCLINES = (__doc__ or '').split("\n")
 
 setup(name='pyarchi',
-      version='1.0.1',
+      version='2.0.1.1',
+      python_requires='>=3.6',
       description='archi - pipeline to study CHEOPS background stars',
       url='http://github.com/Kamuish/archi',
       author='Kamuish',
@@ -31,6 +32,5 @@ setup(name='pyarchi',
             'Programming Language :: Python :: 3.7',
             'Programming Language :: Python :: 3.8'
       ],
-      python_requires='>=3.6',
       
       )
