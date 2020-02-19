@@ -13,6 +13,8 @@ deploy:
   password:
     secure: Bv2WDHi/PrSMVUnWpqvQo0/Ev2gaR1GknJ+K4fTbIqro4soFICFQwEu+e+9kfA7mEosNr4/xPSMwAf3df4Aiu6/0V1Ma80yasqmYHdHhvV6bGzBzaF78N5Oz+jMgDO9+ZCfwVPy7G/7Zr9AwBAiuibBhct+VVDldvG/kFwrcLut7ETRS5ty0YANogtfRcNuBestzrr/hCLGB/B2QW5sp9/mdDyT5Y8OQhXX3KQ3XAsavBI+9+Es5ohdVerD/xLjS6IU8bmL0/OKBL0FBoNR/uSVfDfTkk/KfOlH7YFH+QxSRNq6NzkZ1Vsv/XXFeuZJ1WKz0eF2FqBqusZIDF4EBE027oMoDm7gzvJy6+4aU8jsMi3/D0u5ciYAKf2beSwEOvU3IG/67KiyHx5lX4M0hQ5T71RzbzXD9qqy2PtSbIT/J/42PIBZO4SCEBHjVtt3cyI4YDSyrNm5HRug1M9kS0kfaH3v4QKxUpswBDVZlHZLXVwWLLijxvTJgCWhxLSisv/8e6bTP5Yq6RKFOztBPRMginKFnOm3vVRwdtWbh3gtarvpRTop0Wfvg+gF8oX5Kzy3ZDqE/5VNkED+IAlCUfMcIJJutu4UX+P3dWRI6LKYt3v0hKoTqqmunWAckaGYPjmNDBo8Je9Z7LHeMVbYAfzQdxoACzK4rXpi67kVg0gc=
   distributions: sdist
-  skip_existing: true
   on:
     branch: master
+    condition: "$TRAVIS_PYTHON_VERSION == 3.6"
+  skip_existing: true
+
