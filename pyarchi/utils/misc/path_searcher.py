@@ -19,23 +19,20 @@ def path_finder(mode, off_curve=None, **kwargs):
     -------
 
     """
-
     if mode == "subarray":
 
-        x = glob.glob(os.path.join(kwargs["base_folder"], r"*eduction*/COR/**"))
-        cc = " ".join(x)
-
-        return re.compile(r"\S+_Sub\S+.fits").findall(cc)[0]
+        possible_paths = glob.glob(os.path.join(kwargs["base_folder"], r"*eduction*/COR/**"))
+        regex_patern = re.compile(r"\S+_Sub\S+.fits")
 
     elif mode == "default":
-        x = glob.glob(os.path.join(kwargs["base_folder"], r"*eduction*/PHE/**"))
-        cc = " ".join(x)
-
+        possible_paths = glob.glob(os.path.join(kwargs["base_folder"], r"*eduction*/PHE/**"))
         curve_2_search = kwargs["official_curve"] if not off_curve else off_curve
-        return re.compile(r"\S+{}\S+.fits".format(curve_2_search)).findall(cc)[0]
+        regex_patern = re.compile(r"\S+{}\S+.fits".format(curve_2_search))
+
 
     elif mode == "stars":
-        x = glob.glob(os.path.join(kwargs["base_folder"], r"CH_*/data/**"))
+        possible_paths = glob.glob(os.path.join(kwargs["base_folder"], r"CH_*/data/**"))
 
-        cc = " ".join(x)
-        return re.compile(r"\S+Star\S+.fits").findall(cc)[0]
+        regex_patern = re.compile(r"\S+Star\S+.fits")
+
+    return list(filter(regex_patern.findall, possible_paths))[0]
