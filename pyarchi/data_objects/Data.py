@@ -178,6 +178,9 @@ class Data:
         ----------
         image_number
 
+        store_stars:
+            If parameter is set, store a 
+
         Returns
         -------
 
@@ -273,6 +276,8 @@ class Data:
                     zip(hdulist[1].data["CENTROID_X"], hdulist[1].data["CENTROID_Y"])
                 )
 
+                self.intended_loc = [hdulist[1].data["LOCATION_X"][0], hdulist[1].data["LOCATION_Y"][0]]
+
                 if self.calc_uncert:
                     possible_curves = ["DEFAULT", "OPTIMAL", "RSUP", "RINF"]
                     possible_curves.remove(kwargs["official_curve"])
@@ -312,7 +317,7 @@ class Data:
                 imgs = hdulist[1].data
                 self._imgs = imgs.astype(np.float)
                 self.image_number = self._imgs.shape[0]
-
+                self.image_size = self._imgs[0].shape[::-1]  # to follow the X and Y convention
                 if self.calc_uncert:
                     self.uncertainties_params["cron"] = 1.96 * hdulist[2].data["RON"]
 
