@@ -10,7 +10,8 @@ def rotate_points(Data_fits, img_number, to_calculate):
 
         scaling_factor = Data_fits.bg_grid / 200 if Data_fits.bg_grid != 0 else 1
 
-        delta_pos = [100, 100]
+        delta_pos = [ int(Data_fits.image_size[0]/2),  int(Data_fits.image_size[1]/2)]
+
         delta_pos = np.multiply(delta_pos, scaling_factor) + np.floor(scaling_factor / 2)
 
         for index, star in enumerate(Data_fits.stars):
@@ -62,11 +63,11 @@ def offsets_method(Data_fits, index, primary, secondary):
     if index + 1 < len(Data_fits.roll_ang):
 
         offsets = Data_fits.offsets[index + 1]
-        off_y = -512 + offsets[0]
-        off_x = -512 + offsets[1]
+        off_y = -Data_fits.intended_loc[0] + offsets[0]
+        off_x = -Data_fits.intended_loc[1] + offsets[1]
 
         if primary == "offsets":
-            central = [off_x + 100, off_y + 100]
+            central = [off_x + int(Data_fits.image_size[0]/2), off_y + int(Data_fits.image_size[1]/2)]
             central = np.multiply(central, scaling_factor) + np.floor(scaling_factor / 2)
             Data_fits.stars[0].add_center(central)
             positions_main = Data_fits.stars[0].positions
