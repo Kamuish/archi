@@ -203,9 +203,9 @@ class Data:
 
             photom = np.nansum(final_result)
 
-            star.photom.append(photom)
+            star.add_photom(photom)
 
-        self._validate_forbidden_region()
+        self._validate_forbidden_region(image_number)
 
     def get_image(self, number):
         """
@@ -462,7 +462,7 @@ class Data:
                     dark=params["dark"][index],
                 )
 
-    def _validate_forbidden_region(self):
+    def _validate_forbidden_region(self, image_number):
         """
         Checks for overlaps with the forbidden region
         Returns
@@ -472,11 +472,11 @@ class Data:
 
         for star in self._stars:
 
-            if star.out_bound or not star.is_active:
+            if not star.is_active:
                 continue
 
             if star.latest_mask[self.forbidden_regions].any() != 0:
-                star.out_bound = True
+                star.out_bounds(image_number)
 
     def disable_star(self, star_number):
         """
