@@ -352,3 +352,7 @@ class Star:
 
     def __repr__(self):
         return "{} - {}".format(self.name, self._active)
+
+    @property
+    def number_out_bounds(self):
+        return self._out_number
