@@ -1,6 +1,7 @@
 [tool.poetry]
 name = "pyarchi"
-version = "1.0.0"
+version = "1.0.1.3"
+license='GNU General Public License v3.0'
 description = "Photometry for CHEOPS's background stars"
 authors = ["Kamuish <andremiguel952@gmail.com>"]
 
