@@ -8,7 +8,6 @@ from .misc.timer import my_timer
 from .misc.path_searcher import path_finder
 
 from .misc.parameters_validator import parameters_validator
-from .misc.calculate_moments import calculate_moments
 
 from .noise_metrics.CDPP import CDPP
 from .noise_metrics.DRP_CDPP import DRP_CDPP
