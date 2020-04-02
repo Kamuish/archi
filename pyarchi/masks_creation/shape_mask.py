@@ -2,9 +2,9 @@ import cv2
 import numpy as np
 
 from pyarchi.data_objects.Mask import logger
+from pyarchi.utils import shape_analysis, shape_increase
 
-
-def create_shape_mask(im, stars, increase_factor, scaling_factor, primary, secondary):
+def create_shape_mask(im, stars, increase_factor, scaling_factor, primary, secondary, repeat_removal=0):
     """
     Finds the contours of the image, with openCv default functions
 
@@ -28,6 +28,8 @@ def create_shape_mask(im, stars, increase_factor, scaling_factor, primary, secon
     secondary:
         Methodology to apply to the outer stars. If it's dynam then the initial position of those stars are changed to
         be the ones determined here.
+    repeat_removal:
+        Number of times that we wish to remove the brightest mask from the image, to search for fainter stars
 
     Returns
     -------
@@ -45,36 +47,17 @@ def create_shape_mask(im, stars, increase_factor, scaling_factor, primary, secon
     if secondary == "shape":
         to_calculate = to_calculate + [star.number for star in stars[1:]]
 
-    # Normalization to use with OpenCv
-    im /= np.nanmax(im)
-    im *= 255
-    im = np.uint8(im)
+    all_masks, _ = shape_analysis(im, increase_factor, repeat_removal = repeat_removal)
 
-    # TODO: change this threshold
-    _, thresh = cv2.threshold(im, 10, 255, 0)
-    contours, _ = cv2.findContours(thresh, 1, 2)
 
-    to_remove = []
-    for j in range(len(contours)):  # removes small contours (under 5 points)
-        if len(contours[j]) <= 11:
-            to_remove.append(j)
-    for rm in reversed(to_remove):
-        contours.pop(rm)
-    
-    if len(contours) != len(stars):  # we need to have the same number of masks and stars
+    if len(all_masks) != len(stars):  # we need to have the same number of masks and stars
         logger.fatal("Number of detected contours and stars does not add up")
         logger.fatal(" \t Contours: {}; Stars:{}".format(len(contours),len(stars)))
 
         return -1
 
     mask_dict = {}
-    for cont in contours:
-        mask = np.zeros(im.shape)
-        cv2.drawContours(
-            mask, [cont], -1, (255, 255, 255), -1
-        )  # fills the contour with data
-
-        mask[np.where(mask != 0)] = 1  # normalizes the array
+    for mask in all_masks:
 
         for index, star in enumerate(stars):
             if index not in to_calculate:
