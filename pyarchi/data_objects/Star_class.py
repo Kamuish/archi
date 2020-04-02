@@ -143,8 +143,8 @@ class Star:
             Take into account that star was out of bonds in a given frame
         """
         self._out_number += 1 
+        self.out_bound = True 
         self._out_location.append(index)
-        self.photom[index] = np.nan
 
 
     def add_photom(self, value):
