@@ -91,7 +91,7 @@ def dynam_method(Data_fits, index, primary, secondary, repeat_removal):
             index + 1
         )  # prepares the next frame for the detection routine
 
-        _, centers = shape_analysis(im, Data_fits.bg_grid, repeat_removal)
+        _, centers, _ = shape_analysis(im, Data_fits.bg_grid, repeat_removal)
 
         for detected_center in centers:
             for key, pred_position in predictions.items():
