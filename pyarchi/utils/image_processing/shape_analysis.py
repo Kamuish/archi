@@ -1,6 +1,7 @@
 import numpy as np 
 import cv2 
-from pyarchi.utils import calculate_moments
+from .calculate_moments import calculate_moments
+from .shape_increase import shape_increase
 
 def get_contours(image):
     """
@@ -23,8 +24,9 @@ def get_contours(image):
     im = image.copy()
     im /= np.nanmax(image)
     im *= 255
-    im[np.where(im > 255)] = 255
-    im[np.where(im <0)] = 0
+    with np.errstate(invalid='ignore'): # avoid warnigns from the NaNs
+        im[im > 255] = 255
+        im[im <0] = 0
     im = np.uint8(im)
 
     # TODO: change this threshold
@@ -57,10 +59,26 @@ def get_contours(image):
 
 
 def shape_analysis(image, bg_grid, repeat_removal = 0):
+    """
+    Parameters
+    ----------
+    image : np.ndarray
+        Image to study
+    
+
+    Returns
+    -------
+    masks_to_keep
+        found stars
+    masks_locs
+        location of masks
+    distances
+        distance to center of the image, for each masks
+    """
 
     masks_to_keep = []
     masks_locs = []
-
+    distances = []
     all_masks, brightness = get_contours(image)
 
     for k in range(repeat_removal):
@@ -70,7 +88,9 @@ def shape_analysis(image, bg_grid, repeat_removal = 0):
 
         maximum_mask = all_masks[index]
         masks_to_keep.append(maximum_mask.copy())
-        masks_locs.append(calculate_moments(maximum_mask, bg_grid))
+        centers, dists = calculate_moments([maximum_mask], bg_grid)
+        masks_locs.append(centers[0])
+        distances.append(dists)
         maximum_mask = shape_increase(maximum_mask, 7)
 
         im[np.where( maximum_mask == 1 )] = np.nan 
@@ -79,8 +99,10 @@ def shape_analysis(image, bg_grid, repeat_removal = 0):
 
     scaling_factor = 1
     for mask in all_masks:
-        locs = calculate_moments(mask, bg_grid)
+        locs, dists = calculate_moments([mask], bg_grid)
         use = True
+
+        locs = locs[0]
         for previous_locs in masks_locs:
             if np.isclose(previous_locs[0], locs[0], atol=15 * scaling_factor) and np.isclose(previous_locs[1], locs[1], atol=15 * scaling_factor):
                 use = False 
@@ -88,7 +110,7 @@ def shape_analysis(image, bg_grid, repeat_removal = 0):
         if use:
             masks_to_keep.append(mask)
             masks_locs.append(locs)
-            
-    return masks_to_keep, masks_locs
+            distances.append(dists)
+    return masks_to_keep, masks_locs, distances
 
 
