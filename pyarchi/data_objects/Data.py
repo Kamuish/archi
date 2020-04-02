@@ -420,7 +420,7 @@ class Data:
             logger.fatal("Could not create mask using the 'CIRCLE' method. ")
             return -1
         shape_result = create_shape_mask(
-            self.get_image(0), self._stars, factor, scaling_factor, primary, secondary
+            self.get_image(0), self._stars, factor, scaling_factor, primary, secondary, kwargs['repeat_removal']
         )
 
         if shape_result == -1:
