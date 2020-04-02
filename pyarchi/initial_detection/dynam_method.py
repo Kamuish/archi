@@ -2,7 +2,7 @@ import numpy as np
 import cv2
 
 from pyarchi.data_objects import Star
-from pyarchi.utils import calculate_moments
+from pyarchi.utils import shape_analysis
 
 
 def initial_dynam_centers(img, bg_grid, **kwargs):
@@ -22,7 +22,7 @@ def initial_dynam_centers(img, bg_grid, **kwargs):
 
     """
 
-    centers, distances = calculate_moments(bg_grid, img)
+    _, centers, distances = shape_analysis(img, bg_grid, kwargs['repeat_removal'])
     stars = []
 
     for dist in sorted(distances):
