@@ -1,6 +1,6 @@
 import cv2
 import numpy as np
-from pyarchi.utils import calculate_moments
+from pyarchi.utils import calculate_moments, shape_analysis
 
 
 def create_predictions(Data_fits, img_number):
@@ -48,7 +48,7 @@ def create_predictions(Data_fits, img_number):
     return predicts
 
 
-def dynam_method(Data_fits, index, primary, secondary):
+def dynam_method(Data_fits, index, primary, secondary, repeat_removal):
     """
     This function is used to calculate the position of the center of each contour. In order to do that
     we calculate the moments of the image, which allows us to derive it's "center of mass".
@@ -91,7 +91,7 @@ def dynam_method(Data_fits, index, primary, secondary):
             index + 1
         )  # prepares the next frame for the detection routine
 
-        centers, _ = calculate_moments(Data_fits.bg_grid, im)
+        _, centers = shape_analysis(im, Data_fits.bg_grid, repeat_removal)
 
         for detected_center in centers:
             for key, pred_position in predictions.items():

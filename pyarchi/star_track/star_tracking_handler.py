@@ -34,7 +34,7 @@ def star_tracking_handler(Data_fits, index, **kwargs):
     if results == -1:
         return -1
 
-    results = dynam_method(Data_fits, index, primary, secondary)
+    results = dynam_method(Data_fits, index, primary, secondary, kwargs['repeat_removal'])
 
     if results == -1:
         return -1
