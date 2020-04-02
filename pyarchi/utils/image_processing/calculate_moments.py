@@ -29,9 +29,10 @@ def calculate_moments(contours, bg_grid):
     if bg_grid != 0:
         center = np.multiply(center, scaling_factor) + np.floor(scaling_factor / 2)
 
+    centers = []
+    distances = []
     for j in range(len(contours)):
         M = moments(contours[j])
-
         cY = M["m10"] / M["m00"]
         cX = M["m01"] / M["m00"]
 
