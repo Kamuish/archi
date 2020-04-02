@@ -2,7 +2,7 @@ import numpy as np
 from cv2 import findContours, moments, threshold
 
 
-def calculate_moments(bg_grid, img):
+def calculate_moments(contours, bg_grid):
     """
     Apply image moments, as described in `OpenCv docs <https://docs.opencv.org/3.4.2/dd/d49/tutorial_py_contour_features.html>`_
 
@@ -23,21 +23,6 @@ def calculate_moments(bg_grid, img):
     """
 
     scaling_factor = bg_grid / 200 if bg_grid else 1
-    im = img.copy()
-    im /= np.nanmax(im)
-    im *= 255
-    im = np.uint8(im)
-    _, thresh = threshold(im, 10, 255, 0)
-    contours, _ = findContours(thresh, 1, 2)
-
-    new_cont = []
-    for j in reversed(contours):  # removes small contours
-        if len(j) > 10:
-            new_cont.append(j)
-    contours = new_cont
-    del new_cont
-    centers = []
-    distances = []
 
     center = [100, 100]
     if bg_grid != 0:
