@@ -1,5 +1,5 @@
 import numpy as np
-from cv2 import findContours, moments, threshold
+from cv2 import moments
 
 
 def calculate_moments(contours, bg_grid):
