@@ -6,14 +6,15 @@ def calculate_moments(contours, bg_grid):
     """
     Apply image moments, as described in `OpenCv docs <https://docs.opencv.org/3.4.2/dd/d49/tutorial_py_contour_features.html>`_
 
-    This functions pre-processes the image before calculating the moments, so that it conforms to OPenCv's input data types.   
+       
     Parameters
     ----------
+    contours : list
+        List with calculated masks
+    
     bg_grid : int
         Size of the background grid
-    img : np.array
-        Image to be processed
-    
+
     Returns
     -------
     centers
