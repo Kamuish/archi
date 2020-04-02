@@ -16,3 +16,5 @@ from .noise_metrics.DRP_CDPP import DRP_CDPP
 from .data_export.export_fits import create_fits
 from .data_export.export_txt import export_txt
 from .data_export.export_photo_info import photo_SaveInfo
+
+from .image_processing import  shape_analysis, calculate_moments, shape_increase
