@@ -3,7 +3,6 @@ import cv2
 from .calculate_moments import calculate_moments
 from .shape_increase import shape_increase
 
-import matplotlib.pyplot as plt 
 def get_contours(image):
     """
      This functions pre-processes the image before calculating the moments, so that it conforms to OPenCv's input data types.
