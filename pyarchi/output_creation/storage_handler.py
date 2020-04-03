@@ -70,4 +70,3 @@ def store_data(data_fits, job_number, singular=None, **kwargs):
 
         plt.show()
 
-    plt.close("all")

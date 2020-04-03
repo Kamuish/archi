@@ -62,6 +62,8 @@ class Star:
         
         # Star status:
         self.out_bound = False  # True if the mask overlaps the empty zone
+        self._out_number = 0
+        self._out_location = []
         self._active = True
 
         # Data storage
@@ -136,6 +138,17 @@ class Star:
 
         return cv, cv_def
 
+    def out_bounds(self, index):
+        """
+            Take into account that star was out of bonds in a given frame
+        """
+        self._out_number += 1 
+        self.out_bound = True 
+        self._out_location.append(index)
+
+
+    def add_photom(self, value):
+        self.photom.append(value)
     def add_initial_mask(self, mask, factor, scaling_factor, low_memory=0):
         """
         Initializes the Masks class
@@ -339,3 +352,7 @@ class Star:
 
     def __repr__(self):
         return "{} - {}".format(self.name, self._active)
+
+    @property
+    def number_out_bounds(self):
+        return self._out_number

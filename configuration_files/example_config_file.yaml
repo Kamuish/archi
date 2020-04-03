@@ -39,6 +39,8 @@ uncertainties: 0
 # size of the background grid. Has to be multiple of 200
 grid_bg: 0
 
+# Number of times to remove the brightest mask on the image, to search for fainter stars
+repeat_removal: 0
 ##########################################
 #                                        #
 #          Optimization confs            #
