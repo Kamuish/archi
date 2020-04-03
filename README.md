@@ -26,7 +26,4 @@ A proper introduction to the library, alongside documentation of the multiple fu
 
 
 # Known Problems
-
- [1] The normalization routine fails if one of the stars is saturated; Since the images are normalized in relation to their brigthest point, the saturation of a star leads to us being unable to detect faint stars (under a given magnitude threshold)
- 
- [2] There is no correction for cross-contamination between stars
+ [1] There is no correction for cross-contamination between stars
