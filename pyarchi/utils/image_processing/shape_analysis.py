@@ -2,7 +2,7 @@ import numpy as np
 import cv2 
 from .calculate_moments import calculate_moments
 from .shape_increase import shape_increase
-
+import matplotlib.pyplot as plt 
 def get_contours(image, scaling_factor):
     """
      This functions pre-processes the image before calculating the moments, so that it conforms to OPenCv's input data types.
@@ -82,10 +82,12 @@ def shape_analysis(image, bg_grid, repeat_removal = 0):
     distances = []
     all_masks, brightness = get_contours(image, scaling_factor)
 
-    for k in range(repeat_removal):
-        index = np.argmax(brightness)
-        if k ==0:
-            im = image.copy()
+
+    sorted_vals = np.argsort(brightness)[::-1]
+    all_masks = np.asarray(all_masks)[sorted_vals] # to get sorted from max to min
+
+    im = image
+    for index in range(repeat_removal):
 
         maximum_mask = all_masks[index]
         masks_to_keep.append(maximum_mask.copy())
@@ -94,10 +96,9 @@ def shape_analysis(image, bg_grid, repeat_removal = 0):
         distances.append(dists)
 
         maximum_mask = shape_increase(maximum_mask, 7*scaling_factor)
-
         im[np.where( maximum_mask == 1 )] = np.nan 
 
-        all_masks, brightness = get_contours(im, scaling_factor)
+    all_masks, brightness = get_contours(im, scaling_factor)
 
     scaling_factor = 1
     for mask in all_masks:
