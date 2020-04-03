@@ -3,7 +3,7 @@ import cv2
 from .calculate_moments import calculate_moments
 from .shape_increase import shape_increase
 
-def get_contours(image):
+def get_contours(image, scaling_factor):
     """
      This functions pre-processes the image before calculating the moments, so that it conforms to OPenCv's input data types.
     Removes masks with less than 50 pixels inside it
@@ -37,7 +37,7 @@ def get_contours(image):
     for j in range(len(contours)):  # removes small contours (under 50 points)
         #print(cv2.contourArea(cont))
 
-        if cv2.contourArea(contours[j]) <= 50:
+        if cv2.contourArea(contours[j]) <= 50*scaling_factor:
             to_remove.append(j)
     for rm in reversed(to_remove):
         contours.pop(rm)
@@ -80,7 +80,7 @@ def shape_analysis(image, bg_grid, repeat_removal = 0):
     masks_to_keep = []
     masks_locs = []
     distances = []
-    all_masks, brightness = get_contours(image)
+    all_masks, brightness = get_contours(image, scaling_factor)
 
     for k in range(repeat_removal):
         index = np.argmax(brightness)
@@ -97,7 +97,7 @@ def shape_analysis(image, bg_grid, repeat_removal = 0):
 
         im[np.where( maximum_mask == 1 )] = np.nan 
 
-        all_masks, brightness = get_contours(im)
+        all_masks, brightness = get_contours(im, scaling_factor)
 
     scaling_factor = 1
     for mask in all_masks:
