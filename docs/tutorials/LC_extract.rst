@@ -48,7 +48,8 @@ Furthermore, if we want to change the configuration parameters of archi without 
                         'uncertainties': 1,
                         'CDPP_type': "DRP",
                         "debug": 1,
-                        "plot_realtime": 0}
+                        "plot_realtime": 0,
+                        'repeat_removal': 0}
                         
     # we can overrid all parameters from the file. Typically, one only needs to change these
 
@@ -57,6 +58,8 @@ Furthermore, if we want to change the configuration parameters of archi without 
 
     store_data(data_fits, job_number = 1, **controller.parameters)
 
+If we had a data set with bright and faint stars, we would have to change the "repeat_removal" parameter, to remove the brighter regions in the image. 
+It is recommended to avoid more than 2 iterations, as using larger values may start recognizing regions of the background as stars. 
 
 In order to understand the organization of data inside the "data_fits" objects and the data that is stored with the "store_data" function, please
 refer back to Section :ref:`outputs`.

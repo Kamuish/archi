@@ -45,7 +45,9 @@ General configurations
 * grid_bg:  
     *   Size of the grid used for improved resolution. If it's set to zero then no background grid is used. Otherwise, it needs to be a multiple of the image's sizes (200 px)
 
-
+* repeat_removal: 
+    Number of times to remove the brightest mask in the image
+    
 * optimize: 
     *   If it's 1 then the data files will be pre-processed to find the optimal radius, i.e. , the radii that minimizes the dispersion for each star; If it's 0 the radii used will be the ones from the optimized_radius.json file
 
