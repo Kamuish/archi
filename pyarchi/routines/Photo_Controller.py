@@ -118,7 +118,7 @@ class Photo_controller:
             raise Exception("Something went wrong")
 
         self._completed_run = True
-
+        logger.info("Finished the run; Everything done !!")
         return self.data_fits
 
     def change_parameters(self, params_dict):
