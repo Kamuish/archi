@@ -22,7 +22,8 @@ def shape_increase(data, factor, fac=1):
     Notes
     -----
 
-        This is a recursive function to expand by a number of pixels (factor) our image inside the data array.
+        This is a recursive function to expand by a number of pixels (factor) our image inside the data array. The shape increase
+        avoids boundary issues, by avoiding leaving the image edges. 
         This function muss be refactored since it's inefficient. However, for the time being, the overhead that it introduces
         is not enough to justify optimizing it.
     """
@@ -36,7 +37,9 @@ def shape_increase(data, factor, fac=1):
 
     cases = [[0, 0], [0, 1], [1, 0], [1, 1], [0, -1], [-1, 0], [-1, -1], [1, -1], [-1, 1]]
 
-    max_pos = data.shape[0]
+    max_pos_x = data.shape[0]
+    max_pos_y = data.shape[1]
+
     for pos in zip(positions[0], positions[1]):
 
         for j in cases:
@@ -44,15 +47,17 @@ def shape_increase(data, factor, fac=1):
             val_x = j[0]
             val_y = j[1]
 
+            # avoid breaching image edges
             if pos[0] + val_x < 0:
                 val_x = -pos[0]
-            elif pos[0] + val_x >= max_pos:
+
+            elif pos[0] + val_x >= max_pos_x:
                 val_x = max_pos - pos[0] - 1
 
             if pos[1] + val_y < 0:
                 val_y = -pos[1]
 
-            elif pos[1] + val_y >= max_pos:
+            elif pos[1] + val_y >= max_pos_y:
                 val_y = max_pos - pos[1] - 1
 
             new[pos[0] + val_x, pos[1] + val_y] = 1

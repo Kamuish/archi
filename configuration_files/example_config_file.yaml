@@ -18,7 +18,8 @@ results_folder: ""
 #name of the curve to be used as the comparison basis. Options pass by: DEFAULT; OPTIMAL; RINF; RSUP
 official_curve: "OPTIMAL"
 
-
+# use real to search for files using the file structure from the current DRP; simulated for data from CHEOPSim
+data_type: 'real'
 ##########################################
 #                                        #
 #      General configurations            #

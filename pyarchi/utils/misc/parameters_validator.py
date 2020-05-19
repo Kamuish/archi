@@ -25,6 +25,9 @@ def parameters_validator(**kwargs):
     if kwargs["official_curve"] not in ["DEFAULT", "OPTIMAL", "RINF", "RSUP"]:
         wrong_params.append(kwargs["official_curve"])
 
+    if kwargs['data_type'] not in ['real', 'simulated']:
+        wrong_params.append(kwargs['data_type'])
+
     for param in ["method", "detect_mode", "initial_detect"]:
         if type(kwargs[param]) is not str:
             wrong_params.append(param)
