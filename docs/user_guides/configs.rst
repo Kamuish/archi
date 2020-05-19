@@ -25,6 +25,11 @@ General configurations
     * RSUP 
     * RINF
 
+* data_type: either choose between assuming the file structure from the simulated data or from the "real" data  
+    * real 
+    * simulated 
+
+    
 * method:  Format of the region in which the image will be analysed (for each star).
     *  "circle"  -> uses a circular opening around each star;
     *  "shape"   -> uses the contour of the star to create a mask
