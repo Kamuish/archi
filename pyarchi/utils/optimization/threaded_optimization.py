@@ -84,10 +84,8 @@ def general_optimizer(func, data_f, job_number, max_process, **kwargs):
             value_range, max_process, func, data_f, file_path, to_disable, **kwargs
         )
 
-        for (
-            star,
-            cdpp,
-        ) in min_cvs_tmp.items():  # update old values if the new ones are better
+        for (star,cdpp,) in min_cvs_tmp.items():  # update old values if the new ones are better
+
             if cdpp < min_cvs[star]:
                 min_cvs[star] = cdpp
                 optimized_dict[str(star)] = optimized_dict_tmp[str(star)]
@@ -111,19 +109,16 @@ def general_optimizer(func, data_f, job_number, max_process, **kwargs):
             to_disable = [0]
 
         min_cvs_tmp, optimized_dict_tmp = circular_tuner(
-            optimized_dict.values(),
-            max_process,
-            func,
-            data_f,
-            file_path,
-            to_disable,
+            best_values = optimized_dict.values(),
+            max_process = max_process,
+            func = func,
+            data_f = data_f,
+            file_path = file_path,
+            to_disable = to_disable,
             **kwargs
         )
 
-        for (
-            star,
-            cdpp,
-        ) in min_cvs_tmp.items():  # update old values if the new ones are better
+        for (star, cdpp,) in min_cvs_tmp.items():  # update old values if the new ones are better
             if cdpp < min_cvs[star]:
                 min_cvs[star] = cdpp
                 optimized_dict[str(star)] = optimized_dict_tmp[str(star)]
