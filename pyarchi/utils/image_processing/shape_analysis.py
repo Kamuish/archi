@@ -95,7 +95,7 @@ def shape_analysis(image, bg_grid, repeat_removal = 0):
         masks_locs.append(centers[0])
         distances.append(dists)
 
-        maximum_mask = shape_increase(maximum_mask, 7*scaling_factor)
+        maximum_mask = shape_increase(maximum_mask, 7*scaling_factor)  # remove a larger area around the brigthest star
         im[np.where( maximum_mask == 1 )] = np.nan 
 
     all_masks, brightness = get_contours(im, scaling_factor)
