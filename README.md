@@ -27,6 +27,5 @@ A proper introduction to the library, alongside documentation of the multiple fu
 
 # Known Problems
 
- [1] The normalization routine fails if one of the stars is saturated; Since the images are normalized in relation to their brigthest point, the saturation of a star leads to us being unable to detect faint stars (under a given magnitude threshold)
- 
- [2] There is no correction for cross-contamination between stars
+ [1] There is no correction for cross-contamination between stars
+ [2] If we have data in the entire 200*200 region (not expected to happen) and using the "dynam" mask for the background stars it might "hit" one of the edges of the image. In such case, larger masks will not increase in the direction in which the edge is reached. However, the mask can still grow towards the other directions, leading to masks significantly larger than the original star. In such cases, we recommend to manually change the mask size on the "optimized factors" file.
