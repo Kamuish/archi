@@ -24,6 +24,19 @@ To install, simply do :
 
 A proper introduction to the library, alongside documentation of the multiple functions and interfaces can be found [here](https://archi.readthedocs.io/en/latest/)
 
+If you use the pipeline, cite the article 
+
+@article{Silva_2020,
+   title={ARCHI: pipeline for light curve extraction of CHEOPS background stars},
+   ISSN={1365-2966},
+   url={http://dx.doi.org/10.1093/mnras/staa1443},
+   DOI={10.1093/mnras/staa1443},
+   journal={Monthly Notices of the Royal Astronomical Society},
+   publisher={Oxford University Press (OUP)},
+   author={Silva, André M and Sousa, Sérgio G and Santos, Nuno and Demangeon, Olivier D S and Silva, Pedro and Hoyer, S and Guterman, P and Deleuil, Magali and Ehrenreich, David},
+   year={2020},
+   month={May}
+}
 
 # Known Problems
 
