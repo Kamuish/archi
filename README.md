@@ -1,4 +1,4 @@
-[![Documentation Status](https://readthedocs.org/projects/archi/badge/?version=latest)](https://archi.readthedocs.io/en/latest/?badge=latest)  [![PyPI version fury.io](https://badge.fury.io/py/ansicolortags.svg)](https://pypi.org/project/pyarchi/) [![PyPI pyversions](https://img.shields.io/pypi/pyversions/ansicolortags.svg)](https://pypi.org/project/pyarchi/) [![DOI:10.1093/mnras/staa1443](https://zenodo.org/badge/DOI/10.1007/978-3-319-76207-4_15.svg)](https://doi.org/10.1093/mnras/staa1443)
+[![Documentation Status](https://readthedocs.org/projects/archi/badge/?version=latest)](https://archi.readthedocs.io/en/latest/?badge=latest)  [![PyPI version fury.io](https://badge.fury.io/py/ansicolortags.svg)](https://pypi.org/project/pyarchi/) [![PyPI pyversions](https://img.shields.io/pypi/pyversions/pyarchi.svg)](https://pypi.org/project/pyarchi/) [![DOI:10.1093/mnras/staa1443](https://zenodo.org/badge/DOI/10.1007/978-3-319-76207-4_15.svg)](https://doi.org/10.1093/mnras/staa1443)
 
 # ARCHI - An expansion to the CHEOPS mission official pipeline
 
