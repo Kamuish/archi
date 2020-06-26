@@ -259,9 +259,13 @@ class Data:
         self._image_dict = {}
 
         logger.info("Extracting official pipeline Lightcurve information")
-
-        default_path = path_finder(mode="default", **kwargs)
-        subarray_path = path_finder(mode="subarray", **kwargs)
+        try:
+            default_path = path_finder(mode="default", **kwargs)
+            subarray_path = path_finder(mode="subarray", **kwargs)
+        except:
+            self._error_flag = 1
+            logger.critical("Could not find paths to DRP outputs")
+            return -1
         try:
             hdulist = fits.open(default_path)
         except IOError:
@@ -291,9 +295,12 @@ class Data:
                     darks.append(curr_dark)
 
                     for curve in possible_curves:
-                        default_path = path_finder(
-                            mode="default", off_curve=curve, **kwargs
-                        )
+                        try:
+                            default_path = path_finder(mode="default", off_curve=curve, **kwargs)
+                        except:
+                            self._error_flag = 1
+                            logger.critical("Could not find paths to DRP outputs")
+                            return -1
                         with fits.open(default_path) as file:
                             def_points = (
                                 np.pi * (file[1].header["AP_RADI"]) ** 2

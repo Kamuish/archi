@@ -179,7 +179,8 @@ class Photo_controller:
             max_process=self.kwargs["optim_processes"],
             **self.kwargs
         )
-
+        if vals == -1:
+            raise Exception("Something went wrong")
         logger.info("Optimization process completed after {} s".format(time.time() - t0))
         self.kwargs["optimize"] = 0
 

@@ -54,9 +54,13 @@ def general_optimizer(func, data_f, job_number, max_process, **kwargs):
         file.write("Background grid - {}\n".format(kwargs["grid_bg"]))
         file.write("Factors Stars: -> \n")
 
-    min_cvs, optimized_dict = optimizer(
-        value_range, max_process, func, data_f, file_path, **kwargs
-    )
+    try:
+        min_cvs, optimized_dict = optimizer(
+            value_range, max_process, func, data_f, file_path, **kwargs
+        )
+    except:
+        logger.fatal("Problem on the optimization routine. Refer to logs")
+        return -1
 
     increase = high - low
     iterations = 0

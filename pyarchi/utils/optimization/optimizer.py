@@ -44,7 +44,10 @@ def run_function(queue, func, factors, data_f, to_disable=[], **kwargs):
 
         if index != 0:
             data_f.load_parameters(fac, **kwargs_optim)
-
+        
+        if data_f.abort_process:
+            queue.put(-1)
+            return -1 
         data_fits = func(DataFits=data_f, factor=fac, **kwargs_optim)
 
         star_results = {}
@@ -106,7 +109,8 @@ def optimizer(value_range, max_process, func, data_f, file_path, to_disable=[], 
     # elements not inside the sublists
 
     logger.debug(splitted_values)
-
+    
+    workers = []
     for k in range(process_to_spawn):
         p = Process(
             target=run_function,
@@ -114,6 +118,7 @@ def optimizer(value_range, max_process, func, data_f, file_path, to_disable=[], 
             kwargs=kwargs,
         )
         p.start()
+        workers.append(p)
 
     factors = []
     cvs = []
@@ -121,6 +126,11 @@ def optimizer(value_range, max_process, func, data_f, file_path, to_disable=[], 
     for ii in range(process_to_spawn):
 
         data = comms_queue.get()
+        if data == -1:
+            logger.fatal("Error in the worker. Shutting down optimization process")
+            comms_queue.close()
+            [p.terminate() for p in workers]
+            raise Exception("Errors in the optimization routine")
         if (
             ii == 0
         ):  # For the first run, create list with list for each star, in which the noise values will be stored
