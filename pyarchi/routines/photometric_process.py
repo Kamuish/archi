@@ -1,6 +1,6 @@
 from matplotlib import pyplot as plt
 import numpy as np
-
+import os 
 from pyarchi.star_track import star_tracking_handler
 
 from pyarchi.utils import my_timer
@@ -10,7 +10,7 @@ logger = create_logger("main")
 
 
 @my_timer
-def photometry(data_fits, **kwargs):
+def photometry(data_fits, save_folder, **kwargs):
     """
     This function ensures that the entire process runs in the correct order. First the masks are updated and, afterwards,
     the centers for the next image are calculated.
@@ -48,7 +48,7 @@ def photometry(data_fits, **kwargs):
             logger.fatal("Errors found during run time")
             return -1
 
-        if kwargs["plot_realtime"] and not kwargs["optimize"]:
+        if (kwargs["plot_realtime"] or kwargs['save_masks']) and not kwargs["optimize"]:
             pnt_mask = np.zeros(data_fits.stars[0].latest_mask.shape)
             for star in data_fits.stars:
                 plt.contour(star.latest_mask)
@@ -59,9 +59,13 @@ def photometry(data_fits, **kwargs):
 
             img = data_fits.get_image(index).copy()
             plt.imshow(img)
+
             plt.contour(pnt_mask)
 
-            plt.pause(0.2)
+            if kwargs['save_gif']:
+                plt.savefig(os.path.join(save_folder, 'gif/images', str(index) + '.png'))
+            if kwargs['plot_realtime']:
+                plt.pause(0.2)
 
             plt.clf()
 
