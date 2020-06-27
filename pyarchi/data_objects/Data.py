@@ -322,7 +322,7 @@ class Data:
         else:
             with hdulist:
                 imgs = hdulist[1].data
-                self._imgs = imgs.astype(np.float)
+                self._imgs = imgs
                 self.image_number = self._imgs.shape[0]
                 self.image_size = self._imgs[0].shape[::-1]  # to follow the X and Y convention
                 if self.calc_uncert:
