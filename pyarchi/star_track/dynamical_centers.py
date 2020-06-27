@@ -25,7 +25,14 @@ def create_predictions(Data_fits, img_number):
         fwd_im = Data_fits.roll_ang[img_number + 1]
         bck_im = Data_fits.roll_ang[img_number]
 
-        rot_mat = Data_fits.get_rot_mat(((fwd_im - bck_im) * np.pi / 180), clockwise=True)
+        roll_ang_diff = fwd_im - bck_im
+
+        # manual calculation of the rotational angle in case there is a problem with stored roll angles
+        if not np.isfinite(roll_ang_diff):
+            time_gap = (Data_fits.mjd_time[img_number+1] - Data_fits.mjd_time[img_number])*24*60
+            roll_ang_diff = 3.6*time_gap 
+
+        rot_mat = Data_fits.get_rot_mat(((roll_ang_diff) * np.pi / 180), clockwise=True)
 
         for index in range(len(Data_fits.stars)):
             center = [100, 100]
@@ -42,8 +49,8 @@ def create_predictions(Data_fits, img_number):
 
             x = coords[0][0] + center[0]
             y = coords[1][0] + center[1]
-
             predicts[index] = [x, y]
+
 
     return predicts
 
@@ -56,6 +63,7 @@ def dynam_method(Data_fits, index, primary, secondary, repeat_removal):
     function to predict the center's expected position. BY comparing the expected positions with the outputs of the
     algorithm we can associate a center to each star.
 
+    If the image processing routine is not able to detect any star, the it uses the predictions to shift the masks. 
 
     Parameters
     ----------
@@ -93,13 +101,18 @@ def dynam_method(Data_fits, index, primary, secondary, repeat_removal):
 
         _, centers, _ = shape_analysis(im, Data_fits.bg_grid, repeat_removal)
 
+        if len(centers) == 0:
+            logger.warning("No masks found in image {}. Using predictions to shift the masks".format(index))
+            for key, pred in predictions.items():
+                Data_fits.stars[key].add_center(predictions[0])
+
         for detected_center in centers:
             for key, pred_position in predictions.items():
                 # calculate x,y coordinate of center
                 if np.isclose(
-                    detected_center[0], pred_position[0], atol=15 * scaling_factor
+                    detected_center[0], pred_position[0], atol=30 * scaling_factor
                 ) and np.isclose(
-                    detected_center[1], pred_position[1], atol=15 * scaling_factor
+                    detected_center[1], pred_position[1], atol=30 * scaling_factor
                 ):
                     del predictions[key]
                     if Data_fits.stars[key].number not in to_calculate:
