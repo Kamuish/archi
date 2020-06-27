@@ -3,7 +3,7 @@ import os
 import numpy as np
 
 
-from pyarchi.utils import create_logger
+from pyarchi.utils import create_logger, create_gif
 
 logger = create_logger("Output creation")
 
@@ -176,4 +176,6 @@ def photom_plots(data_fits, master_folder, singular=None, **kwargs):
             plt.legend(loc=1)
             plt.savefig(os.path.join(master_folder, "Star_{}/pyarchi_curve".format(j)))
 
+    if kwargs['save_gif']:
+        create_gif(os.path.join(master_folder,'gif/images'),os.path.join(master_folder,'gif'), 'star_tracking.gif' )
     logger.info("All plots were completed")

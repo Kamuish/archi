@@ -34,6 +34,8 @@ def export_txt(Data_fits, path, **kwargs):
     except IOError:
         logger.error("Lightcurve-Default file not found", exc_info=True)
         return -1
+    except Exception as e:
+        logger.fatal("Unspecified error. Refer to previous log messages", exc_info=True)
     else:
         with hdulist:
             roll_ang = hdulist[1].data["ROLL_ANGLE"]

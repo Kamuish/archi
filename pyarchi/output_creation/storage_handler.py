@@ -5,7 +5,7 @@ from pyarchi.utils import export_txt, create_fits, photo_SaveInfo
 from pyarchi.data_objects import Data
 
 from .photometry_outputs import photom_plots
-from .folder_handler import handle_folders
+from pyarchi.utils import handle_folders
 
 from pyarchi.utils import create_logger
 logger = create_logger("Output creation")

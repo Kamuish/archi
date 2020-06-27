@@ -5,7 +5,7 @@ from .photometric_process import photometry
 from pyarchi.data_objects import Data
 
 from pyarchi.utils import general_optimizer, store_optimized_radius
-from pyarchi.utils import create_logger, parameters_validator
+from pyarchi.utils import create_logger, parameters_validator, handle_folders
 
 logger = create_logger("Photo Controller")
 
@@ -36,6 +36,8 @@ class Photo_controller:
             "optimize"
         ]:  # Finds the best factors to minimize Cv and updates the json file
             self.__optimize()
+
+        self.master_save_folder =  handle_folders(len(self.data_fits.stars), self.job_number, **kwargs)
 
         self._completed_run = False
 
@@ -96,6 +98,7 @@ class Photo_controller:
             self.kwargs if (factor is None and not self.kwargs["optimize"]) else kwargs
         )
 
+
         data_fits = DataFits if DataFits is not None else self.data_fits
         result = data_fits.load_parameters(factor, **configs)
 
@@ -103,7 +106,8 @@ class Photo_controller:
             logger.fatal("Critical error")
             return data_fits
 
-        self.data_fits = photometry(data_fits = data_fits, **configs)
+
+        self.data_fits = photometry(data_fits = data_fits, save_folder = self.master_save_folder, **configs)
 
         if not self.kwargs["optimize"]:
             logger.info("Checking for out of bounds masks:")
@@ -179,7 +183,8 @@ class Photo_controller:
             max_process=self.kwargs["optim_processes"],
             **self.kwargs
         )
-
+        if vals == -1:
+            raise Exception("Something went wrong")
         logger.info("Optimization process completed after {} s".format(time.time() - t0))
         self.kwargs["optimize"] = 0
 

@@ -88,6 +88,7 @@ show_results: 1
 # shows the images and masks in real time
 plot_realtime: 0
 
+save_gif: 1
 
 ##########################################
 #                                        #
