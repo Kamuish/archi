@@ -3,7 +3,8 @@ import os
 
 def handle_folders(number_stars, job_number, singular=None, **kwargs):
     """
-        If the folder structure is not present, then it is created. If we only wish to output data for a singular star, then no more folder are created.
+        If the folder structure is not present, then it is created. If we only wish to output data for a singular star, then all folders acre created 
+        but the unused ones will be empty.
 
     Parameters
     ----------
@@ -26,6 +27,11 @@ def handle_folders(number_stars, job_number, singular=None, **kwargs):
 
     if not os.path.exists(path):
         os.mkdir(path)
+
+    if kwargs['save_gif']:
+        if not os.path.exists(os.path.join(path, 'gif')):
+            os.mkdir(os.path.join(path, 'gif'))
+            os.mkdir(os.path.join(path,'gif', 'images'))
 
     for j in range(number_stars):
 
