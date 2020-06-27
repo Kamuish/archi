@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "pyarchi"
-version = "1.0.1.4"
+version = "1.1"
 license='GNU General Public License v3.0'
 description = "Photometry for CHEOPS's background stars"
 authors = ["Kamuish <amiguel@astro.up.pt>"]
@@ -23,6 +23,7 @@ pyyaml = "^5.3"
 opencv-python = "^4.1.2"
 scipy = "^1.4.1"
 astropy = "^4.0"
+imageio = "^2.8.0"
 
 [tool.poetry.dev-dependencies]
 coverage = "^5.0.3"
