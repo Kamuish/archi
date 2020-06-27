@@ -89,6 +89,9 @@ General configurations
 * plot_realtime: 
     *   If it's 1 we will see the images with the region under study marked with a circle. When it's set to 1 the program shows a performance hit since the plot uses up some computational power. If the optimize parameter is set to 1 this one is set to 0 during the optimization process.
 
+* save_gif:
+    * If set to one archi generates a gif with the stars and the masks used for each one of them
+    
 * show_results: 
     *   Shows the photometric curve of each star
 

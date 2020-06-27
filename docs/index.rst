@@ -20,11 +20,11 @@ reduction pipeline (DRP), in a project named "An expansion foR the CHeops missio
 
         Installation <user_guides/installation>
         Configuration <user_guides/configs>
-        A quick overview <user_guides/overview>
+        A quick overview <archi_info/overview>
         The User interface <user_guides/user_interface>
         How to access the Data  <user_guides/results>
         The Optimization routine <user_guides/optimization>
-
+        Archi versions <archi_info/release>
 
 .. toctree::
    :maxdepth: 2

@@ -51,7 +51,7 @@ Furthermore, if we want to change the configuration parameters of archi without 
                         "plot_realtime": 0,
                         'repeat_removal': 0}
                         
-    # we can overrid all parameters from the file. Typically, one only needs to change these
+    # we can override all parameters from the file. Typically, one only needs to change these
 
     controller.change_parameters(configs_override) 
     data_fits = controller.run()

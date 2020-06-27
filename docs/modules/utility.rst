@@ -44,9 +44,6 @@ optimization
 misc
 ^^^^^^^^^^^^^^^^
 
-.. function:: calculate_moments(bg_grid, img)
-.. automodule:: pyarchi.utils.misc.calculate_moments.calculate_moments
-    :members:
 
 .. automodule:: pyarchi.utils.misc.logger_setup   
     :members:
@@ -56,6 +53,8 @@ misc
 
 .. automodule:: pyarchi.utils.misc.path_searcher  
     :members:
+
+
 
 .. automodule:: pyarchi.utils.misc.rotation_mats   
     :members:
