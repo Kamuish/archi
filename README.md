@@ -2,16 +2,10 @@
 
 # ARCHI - An expansion to the CHEOPS mission official pipeline
 
-CHEOPS mission, one of ESA's mission has been launched in December 2019. 
+![Alt Text](https://github.com/Kamuish/archi/blob/master/docs/archi_info/star_tracking.gif)
 
-The official pipeline released for this mission only works for the
-target star, thus leaving a lot of information  left to explore. Furthermore, the presence of background stars in our images
-can mimic astrophysical signals in the target star. 
+High precision time-series photometry from space is being used for a number of scientific cases. In this context, the recently launched CHaracterizing ExOPlanet Satellite (CHEOPS) (ESA) mission promises to bring 20 ppm precision over an exposure time of 6 h, when targeting nearby bright stars, having in mind the detailed characterization of exoplanetary systems through transit measurements. However, the official CHEOPS (ESA) mission pipeline only provides photometry for the main target (the central star in the field). In order to explore the potential of CHEOPS photometry for all stars in the field,  we present archi, an additional open-source pipeline module to analyse the background stars present in the image. As archi uses the official data reduction pipeline data as input, it is not meant to be used as an independent tool to process raw CHEOPS data but, instead, to be used as an add-on to the official pipeline. We test archi using CHEOPS simulated images, and show that photometry of background stars in CHEOPS images is only slightly degraded (by a factor of 2–3) with respect to the main target. This opens a potential for the use of CHEOPS to produce photometric time-series of several close-by targets at once, as well as to use different stars in the image to calibrate systematic errors. We also show one clear scientific application where the study of the companion light curve can be important for the understanding of the contamination on the main target.
 
-
-We felt that there was a need for a pipeline capable of analysing those stars and thus, built archi, a pipeline
-built on top of the DRP, to analyse those stars. Archi has been tested with simulated data, showing proper behaviour.
-ON the target star we found photometric precisions either equal or slightly better than the DRP. For the background stars we found photometric preicision 2 to 3 times higher than the target star.
 
 # How to install archi 
 
@@ -19,11 +13,13 @@ The pipeline is written in Python3, and most features should work on all version
 
 To install, simply do :
 
-    pip install pyarchi
+    pip install pyarchi 
+
+To see bug fixes and the new functionalities of each version refer to the [official documentation](https://archi.readthedocs.io/en/latest/archi_info/release.html)
 
 # How to use the library 
 
-A proper introduction to the library, alongside documentation of the multiple functions and interfaces can be found [here](https://archi.readthedocs.io/en/latest/)
+A proper introduction to the library, alongside documentation of the multiple functions and interfaces can be found [here](https://archi.readthedocs.io/en/latest/). 
 
 If you use the pipeline, cite the article 
 
