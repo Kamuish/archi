@@ -2,9 +2,14 @@
 
 # ARCHI - An expansion to the CHEOPS mission official pipeline
 
-![Alt Text](https://github.com/Kamuish/archi/blob/master/docs/archi_info/star_tracking.gif)
 
 High precision time-series photometry from space is being used for a number of scientific cases. In this context, the recently launched CHaracterizing ExOPlanet Satellite (CHEOPS) (ESA) mission promises to bring 20 ppm precision over an exposure time of 6 h, when targeting nearby bright stars, having in mind the detailed characterization of exoplanetary systems through transit measurements. However, the official CHEOPS (ESA) mission pipeline only provides photometry for the main target (the central star in the field). In order to explore the potential of CHEOPS photometry for all stars in the field,  we present archi, an additional open-source pipeline module to analyse the background stars present in the image. As archi uses the official data reduction pipeline data as input, it is not meant to be used as an independent tool to process raw CHEOPS data but, instead, to be used as an add-on to the official pipeline. We test archi using CHEOPS simulated images, and show that photometry of background stars in CHEOPS images is only slightly degraded (by a factor of 2–3) with respect to the main target. This opens a potential for the use of CHEOPS to produce photometric time-series of several close-by targets at once, as well as to use different stars in the image to calibrate systematic errors. We also show one clear scientific application where the study of the companion light curve can be important for the understanding of the contamination on the main target.
+
+# ARCHI - a quick preview 
+
+Here we have the masks used for the analysis of a simulated data set, for each individual image:
+
+![Alt Text](https://github.com/Kamuish/archi/blob/master/docs/archi_info/star_tracking.gif)
 
 
 # How to install archi 
