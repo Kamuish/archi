@@ -74,6 +74,7 @@ each star and by comparing the target one against the DRP.
 However, if we want to do so manually, we can do it this way:
 
 .. code:: python 
+
     from pyarchi import Photo_controller, store_data
     import matplotlib.pyplot as plt 
 
