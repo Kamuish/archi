@@ -77,7 +77,7 @@ headless: 0
 
 low_memory: 0
 
-# K2 or DRP
+# K2 
 CDPP_type: "K2"
 
 # compares the method against the official pipeline
