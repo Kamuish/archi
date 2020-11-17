@@ -48,7 +48,7 @@ def photometry(data_fits, save_folder, **kwargs):
             logger.fatal("Errors found during run time")
             return -1
 
-        if (kwargs["plot_realtime"]) and not kwargs["optimize"]:
+        if (kwargs["plot_realtime"] or kwargs['save_gif']) and not kwargs["optimize"]:
             pnt_mask = np.zeros(data_fits.stars[0].latest_mask.shape)
             for star in data_fits.stars:
                 plt.contour(star.latest_mask)
