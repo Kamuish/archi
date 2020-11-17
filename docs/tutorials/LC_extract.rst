@@ -65,6 +65,22 @@ In order to understand the organization of data inside the "data_fits" objects a
 refer back to Section :ref:`outputs`.
 
 
+It is **highly recommended** that the user builds its own routine to estimate the noise in the lightcurve. To do so, a given metric must be passed in the configs_override 
+ This metric will be minimized during the mask selection routine. The current version only gives the user the flux and observation time.
+
+.. code:: python 
+
+    from pyarchi import Photo_controller, store_data
+
+    controller = Photo_controller(job_number = 1,
+                                 config_path="<path_to_file>/config.yaml"
+                                 )
+    def noise_metric(flux, time):
+        metric = np.std(flux)
+        return metric
+    configs_override = {'CDPP_type': noise_metric}
+
+
 How to plot the outputs
 --------------------------------
 
