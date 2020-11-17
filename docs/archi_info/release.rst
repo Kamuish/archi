@@ -1,7 +1,13 @@
 What is new in archi
 ===========================
-
-v1.1.0 (Current)
+v1.2.0 (Current)
+-----------------------
+* New Features:
+    #. Allow the user to provide a custom metric for the lightcurve noise
+* Bug Fixes:
+    #. removed critical bug when evaluating old keyword
+    
+v1.1.0 
 -----------------------
 * New Features:
     #. Added the ability to store a gif of the star tracking routine
