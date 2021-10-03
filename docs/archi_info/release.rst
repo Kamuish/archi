@@ -1,5 +1,11 @@
 What is new in archi
 ===========================
+v1.2.1 (Current)
+-----------------------
+* Bug Fixes:
+    #. No images were stored when a gif was set to be created
+    #. Missing imageio in the requirements.txt
+
 v1.2.0 (Current)
 -----------------------
 * New Features:
