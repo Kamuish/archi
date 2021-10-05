@@ -165,7 +165,7 @@ if __name__ == "__main__":
     with open(
         "/home/andre/PycharmProjects/CHEOPS_mult_dtct/configs/config.yaml", "r"
     ) as stream:
-        kwargs = yaml.load(stream)
+        kwargs = yaml.safe_load(stream)
 
     x = get_optimized_mask(**kwargs)
 
