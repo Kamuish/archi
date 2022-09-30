@@ -45,14 +45,14 @@ def create_shape_mask(im, stars, increase_factor, scaling_factor, primary, secon
         to_calculate.append(0)
 
     if secondary == "shape":
-        to_calculate = to_calculate + [star.number for star in stars[1:]]
+        to_calculate += [star.number for star in stars[1:]]
 
     all_masks, _, _ = shape_analysis(im, bg_grid, repeat_removal = repeat_removal)
 
 
     if len(all_masks) != len(stars):  # we need to have the same number of masks and stars
         logger.fatal("Number of detected contours and stars does not add up")
-        logger.fatal(" \t Contours: {}; Stars:{}".format(len(contours),len(stars)))
+        logger.fatal(" \t Contours: {}; Stars:{}".format(len(all_masks),len(stars)))
 
         return -1
 
