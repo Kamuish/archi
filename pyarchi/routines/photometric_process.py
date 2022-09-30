@@ -1,6 +1,5 @@
 from matplotlib import pyplot as plt
 import numpy as np
-import os 
 from pyarchi.star_track import star_tracking_handler
 from pathlib import Path
 from pyarchi.utils import my_timer
