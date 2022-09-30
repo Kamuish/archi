@@ -49,10 +49,10 @@ def centers_from_fits(primary: str, secondary: str, stars: List, initial_angle: 
     to_calculate = []
 
     if primary == "fits":
-        to_calculate = to_calculate + [0]
+        to_calculate += [0]
 
     if secondary == "fits":
-        to_calculate = to_calculate + [1]
+        to_calculate += [1]
 
     arcsec = 1 / 3600
     arcsec_per_pix = 1
