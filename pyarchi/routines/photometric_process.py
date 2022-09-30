@@ -2,7 +2,7 @@ from matplotlib import pyplot as plt
 import numpy as np
 import os 
 from pyarchi.star_track import star_tracking_handler
-
+from pathlib import Path
 from pyarchi.utils import my_timer
 from pyarchi.utils import create_logger
 
@@ -63,7 +63,7 @@ def photometry(data_fits, save_folder, **kwargs):
             plt.contour(pnt_mask)
 
             if kwargs['save_gif']:
-                plt.savefig(os.path.join(save_folder, 'gif/images', str(index) + '.png'))
+                plt.savefig(Path(save_folder) / f'gif/images/{str(index)}.png')
             if kwargs['plot_realtime']:
                 plt.pause(0.2)
 
