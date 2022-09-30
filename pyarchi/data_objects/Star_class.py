@@ -53,15 +53,15 @@ class Star:
 
     number = 0
 
-    def __init__(self, cdpp_type:str, pos=None, dist = None):
+    def __init__(self, cdpp_type: str, pos=None, dist=None):
 
         # General star information
         self.number = Star.number
         self.__class__.number += 1
         self.positions = [pos]
         self.init_pos = pos.copy()
-        self.dist_center = dist  
-        
+        self.dist_center = dist
+
         # Star status:
         self.out_bound = False  # True if the mask overlaps the empty zone
         self._out_number = 0
@@ -96,7 +96,7 @@ class Star:
         """
 
         try:
-            logger.info("Sepyarchng for the file")
+            logger.info("Searching for the file")
             default_path = path_finder(mode="default", **kwargs)
         except:
             logger.fatal("Could not find the path to the file", exc_info=True)
@@ -127,15 +127,14 @@ class Star:
 
         if time is None:
             logger.fatal("Missing the time to use DRP's CDPP")
-        
+
         if self.cdpp_type == "K2":
-            cv = CDPP(self.photom,time, sized, winlen, win, outl)
+            cv = CDPP(self.photom, time, sized, winlen, win, outl)
             cv_def = CDPP(self.default_lightcurve, time, sized, winlen, win, outl) if self.debug else None
 
         else:
-            cv = self.cdpp_type(self.photom,time)
+            cv = self.cdpp_type(self.photom, time)
             cv_def = self.cdpp_type(self.default_lightcurve, time) if self.debug else None
-
 
         return cv, cv_def
 
@@ -143,13 +142,13 @@ class Star:
         """
             Take into account that star was out of bonds in a given frame
         """
-        self._out_number += 1 
-        self.out_bound = True 
+        self._out_number += 1
+        self.out_bound = True
         self._out_location.append(index)
-
 
     def add_photom(self, value):
         self.photom.append(value)
+
     def add_initial_mask(self, mask, factor, scaling_factor, low_memory=0):
         """
         Initializes the Masks class
@@ -300,12 +299,13 @@ class Star:
         self._uncertainties = uncerts
 
     @classmethod
-    def reset_number(cls,new_number):
+    def reset_number(cls, new_number):
         cls.number = new_number
 
     @property
     def name(self):
         return "Star {}".format(self.number)
+
     # Properties:
     @property
     def is_active(self):
@@ -332,7 +332,6 @@ class Star:
     @property
     def mask_norm_npoints(self):
         return self.masks.normalized_points
-
 
     @property
     def first_mask(self):
