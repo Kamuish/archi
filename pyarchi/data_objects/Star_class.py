@@ -53,7 +53,7 @@ class Star:
 
     number = 0
 
-    def __init__(self, cdpp_type, pos=None, dist = None):
+    def __init__(self, cdpp_type:str, pos=None, dist = None):
 
         # General star information
         self.number = Star.number

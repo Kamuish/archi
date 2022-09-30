@@ -1,3 +1,5 @@
+from typing import List
+
 import numpy as np
 
 from astropy.io import fits
@@ -8,7 +10,8 @@ from pyarchi.data_objects import Star
 
 logger = create_logger("initial_detection")
 
-def centers_from_fits(primary, secondary, stars, initial_angle,initial_offset, **kwargs):
+
+def centers_from_fits(primary: str, secondary: str, stars: List, initial_angle: float, initial_offset: List, **kwargs):
     """
     Using information stored on the fits files, we determine the centers positions. The centers are determined using
     relations between the differences in RA and DEC of all stars in relation to the known point : the central star.
@@ -131,7 +134,7 @@ def centers_from_fits(primary, secondary, stars, initial_angle,initial_offset, *
         if 1 in to_calculate:  # for all other stars
             pos = np.multiply(pos, scaling_factor) + np.floor(scaling_factor / 2)
 
-            if warning_mismatch: # if the fits and dynam do not match, create from scratch
+            if warning_mismatch:  # if the fits and dynam do not match, create from scratch
                 stars.append(Star(kwargs["CDPP_type"], positions, dist))
             else:
                 stars[valid_stars].change_init_pos(pos)
