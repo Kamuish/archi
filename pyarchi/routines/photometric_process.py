@@ -62,7 +62,12 @@ def photometry(data_fits, save_folder, **kwargs):
             plt.contour(pnt_mask)
 
             if kwargs['save_gif']:
-                plt.savefig(Path(save_folder) / f'gif/images/{str(index)}.png')
+                save_folder = Path(save_folder)
+                if not save_folder.exists():
+                    logger.fatal("Save folder for the gif does not exist!")
+                    return -1
+
+                plt.savefig(save_folder / f'gif/images/{str(index)}.png')
             if kwargs['plot_realtime']:
                 plt.pause(0.2)
 
