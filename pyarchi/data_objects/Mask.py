@@ -113,7 +113,7 @@ class Masks:
         """ 
             Returns the number of points, normalized to the "normal" grid, with 200 by 200 px
         """
-        return self._mask_size / (self.grid_increase) ** 2
+        return self._mask_size / self.grid_increase ** 2
 
     def __getitem__(self, item):
         return self._masks[item]  # delegate to li.__getitem__

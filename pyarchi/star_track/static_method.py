@@ -29,7 +29,7 @@ def static_method(Data_fits, img_number, primary, secondary):
         to_calculate.append(0)
 
     if secondary == "static":
-        to_calculate = to_calculate + [star.number for star in Data_fits.stars[1:]]
+        to_calculate += [star.number for star in Data_fits.stars[1:]]
 
     if img_number + 1 < len(Data_fits.roll_ang):
         # FIXME:  no need to go get the rotation matrix from the Data class -> get from utils package

@@ -4,6 +4,7 @@ import numpy as np
 from pyarchi.data_objects.Mask import logger
 from pyarchi.utils import shape_analysis, shape_increase
 
+
 def create_shape_mask(im, stars, increase_factor, scaling_factor, primary, secondary, bg_grid, repeat_removal=0):
     """
     Finds the contours of the image, with openCv default functions
@@ -45,14 +46,13 @@ def create_shape_mask(im, stars, increase_factor, scaling_factor, primary, secon
         to_calculate.append(0)
 
     if secondary == "shape":
-        to_calculate = to_calculate + [star.number for star in stars[1:]]
+        to_calculate += [star.number for star in stars[1:]]
 
-    all_masks, _, _ = shape_analysis(im, bg_grid, repeat_removal = repeat_removal)
-
+    all_masks, _, _ = shape_analysis(im, bg_grid, repeat_removal=repeat_removal)
 
     if len(all_masks) != len(stars):  # we need to have the same number of masks and stars
         logger.fatal("Number of detected contours and stars does not add up")
-        logger.fatal(" \t Contours: {}; Stars:{}".format(len(contours),len(stars)))
+        logger.fatal(" \t Contours: {}; Stars:{}".format(len(all_masks), len(stars)))
 
         return -1
 
@@ -75,4 +75,3 @@ def create_shape_mask(im, stars, increase_factor, scaling_factor, primary, secon
                 mask_dict[index] = final_mask
 
     return mask_dict
-

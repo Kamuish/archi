@@ -43,7 +43,7 @@ def create_circular_mask(img, stars, radius, primary, secondary):
         to_calculate.append(0)
 
     if secondary == "circle":
-        to_calculate = to_calculate + [star.number for star in stars[1:]]
+        to_calculate += [star.number for star in stars[1:]]
 
     xx, yy = np.mgrid[: img.shape[0], : img.shape[0]]
 

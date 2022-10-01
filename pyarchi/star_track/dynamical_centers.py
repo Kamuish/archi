@@ -1,7 +1,11 @@
 import cv2
 import numpy as np
+
 from pyarchi.utils import calculate_moments, shape_analysis
 
+from pyarchi.utils import create_logger
+
+logger = create_logger("Star track")
 
 def create_predictions(Data_fits, img_number):
     """
@@ -55,7 +59,7 @@ def create_predictions(Data_fits, img_number):
     return predicts
 
 
-def dynam_method(Data_fits, index, primary, secondary, repeat_removal):
+def dynam_method(Data_fits, index, primary: str, secondary:str, repeat_removal: int):
     """
     This function is used to calculate the position of the center of each contour. In order to do that
     we calculate the moments of the image, which allows us to derive it's "center of mass".

@@ -8,7 +8,9 @@ from .photometry_outputs import photom_plots
 from pyarchi.utils import handle_folders
 
 from pyarchi.utils import create_logger
+
 logger = create_logger("Output creation")
+
 
 def store_data(data_fits, job_number, singular=None, **kwargs):
     """
@@ -67,6 +69,4 @@ def store_data(data_fits, job_number, singular=None, **kwargs):
                 logger.fatal("Problems were found during fit file creation")
 
     if kwargs["show_results"]:
-
         plt.show()
-

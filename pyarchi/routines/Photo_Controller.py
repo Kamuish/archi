@@ -27,7 +27,7 @@ class Photo_controller:
             kwargs = config_path
 
         self.kwargs = kwargs
-        self.data_fits = Data(kwargs['base_folder']) 
+        self.data_fits = Data(kwargs['base_folder'])
 
         if no_optim:
             self.kwargs["optimize"] = 0
@@ -37,7 +37,7 @@ class Photo_controller:
         ]:  # Finds the best factors to minimize Cv and updates the json file
             self.__optimize()
 
-        self.master_save_folder =  handle_folders(len(self.data_fits.stars), self.job_number, **kwargs)
+        self.master_save_folder = handle_folders(len(self.data_fits.stars), self.job_number, **kwargs)
 
         self._completed_run = False
 
@@ -50,13 +50,14 @@ class Photo_controller:
         -------
 
         """
+
         @wraps(func)
         def on_call(self, *args, **kwargs):
 
             if (
-                func.__name__ == "run" and self.kwargs["optimize"]
+                    func.__name__ == "run" and self.kwargs["optimize"]
             ):  # pylint: disable=no-member
-                pass   # during optimization process there are no checks
+                pass  # during optimization process there are no checks
             else:
                 wrong_params, warnings, kwargs = parameters_validator(**self.kwargs)
                 if any(warnings):
@@ -71,15 +72,15 @@ class Photo_controller:
                     [logger.fatal("\t \t" + wrong_param) for wrong_param in wrong_params]
                     return -1
 
-            if func.__name__ == "__optimize": # pylint: disable=no-member
+            if func.__name__ == "__optimize":  # pylint: disable=no-member
                 return func(self)  # pylint: disable=not-callable
             else:
-                return func(self, *args, **kwargs) # pylint: disable=not-callable
+                return func(self, *args, **kwargs)  # pylint: disable=not-callable
 
         return on_call
 
     @_check_parameters
-    def run(self, DataFits = None, factor=None, **kwargs):
+    def run(self, DataFits=None, factor=None, **kwargs):
         """
         Calls the main method to run the star analysis pipeline
 
@@ -98,7 +99,6 @@ class Photo_controller:
             self.kwargs if (factor is None and not self.kwargs["optimize"]) else kwargs
         )
 
-
         data_fits = DataFits if DataFits is not None else self.data_fits
         result = data_fits.load_parameters(factor, **configs)
 
@@ -106,16 +106,15 @@ class Photo_controller:
             logger.fatal("Critical error")
             return data_fits
 
-
-        self.data_fits = photometry(data_fits = data_fits, save_folder = self.master_save_folder, **configs)
+        self.data_fits = photometry(data_fits=data_fits, save_folder=self.master_save_folder, **configs)
 
         if not self.kwargs["optimize"]:
             logger.info("Checking for out of bounds masks:")
-            found = False 
+            found = False
             for star in self.data_fits.stars:
                 if star.out_bound:
                     logger.warning("\t\t Star {} is out of bounds".format(star.number))
-                    found = True 
+                    found = True
             print("\t{}\n==============//==============".format("-> Found nothing" if not found else ''))
         if data_fits.abort_process:
             logger.fatal("Problems were found. Could not run properly !!!!!")
@@ -147,9 +146,12 @@ class Photo_controller:
                     "The {} configuration value does not exist".format(key)
                 )
             if key == 'optimize' and value != 0:
-                raise KeyError("Cannot set optimize parameter to one. Use the .optimize() method to manually trigger the optimization routine")
+                raise KeyError(
+                    "Cannot set optimize parameter to one. Use the .optimize() method to manually trigger the optimization "
+                    "routine "
+                    )
             new_dict[key] = value
-        
+
         self.kwargs = new_dict
         self.data_fits.used_file = self.kwargs["base_folder"]
 
